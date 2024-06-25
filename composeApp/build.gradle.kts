@@ -1,4 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -7,8 +6,14 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kotlinx.serialization)
+    id("com.google.devtools.ksp") version "2.0.0-1.0.22"
+    id("de.jensklingenberg.ktorfit") version "2.0.0"
 }
 
+configure<de.jensklingenberg.ktorfit.gradle.KtorfitGradleConfiguration>{
+    version = libs.versions.ktorfit.asProvider().get()
+}
 kotlin {
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
@@ -33,14 +38,39 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.koin.core)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material)
+            implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(libs.mvvm.core)
+            implementation(libs.mvvm.compose)
+            implementation(libs.mvvm.flow)
+            implementation(libs.mvvm.flow.compose)
+
+            /**
+             * Ktor & Ktorfit
+             */
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.serialization)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.jensklingenberg.ktorfit)
+            implementation (libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.composeVM)
+            //ksp("de.jensklingenberg.ktorfit:ktorfit-ksp:1.0.0") // версия KSP процессора Ktorfit
+
+
+//            implementation(libs.navigation.compose)
+//            implementation(libs.kotlinx.serialization.json)
+
+
         }
     }
 }
@@ -80,5 +110,8 @@ android {
     dependencies {
         debugImplementation(compose.uiTooling)
     }
+}
+dependencies {
+    implementation(libs.androidx.ui.android)
 }
 
