@@ -13,7 +13,7 @@ actual fun ProjectTheme(
 ) {
     MaterialTheme(
         colorScheme = if(darkTheme) DarkColorScheme else LightColorScheme,
-        typography = ui.Typography,
+        typography = ui.getTypography(),
         content = content
     )
 }

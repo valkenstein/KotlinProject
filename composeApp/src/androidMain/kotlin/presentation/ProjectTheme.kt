@@ -44,7 +44,7 @@ actual fun ProjectTheme(
     }
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = ui.Typography,
+        typography = ui.getTypography(),
         content = content
     )
 }

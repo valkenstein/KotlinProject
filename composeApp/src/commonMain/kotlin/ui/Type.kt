@@ -8,11 +8,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import kotlinproject.composeapp.generated.resources.Res
 import kotlinproject.composeapp.generated.resources.proxima_nova_regular
+import ui.BaseUi.getTypography
 
 // Set of Material typography styles to start with
-val Typography = Typography(
+
+@Composable
+fun getTypography() = Typography(
     bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = getTypography(),
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
