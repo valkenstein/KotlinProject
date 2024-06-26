@@ -4,8 +4,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
-import domain.BonusOperationUseCase
+import domain.usecase.BonusOperationUseCase
+import domain.model.BonusAccountItemDom
 import domain.model.ContactDom
+import domain.model.ResultDom
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -16,13 +18,13 @@ import presentation.ContactListState
 class ContactListViewModel(private val bonusOperationUseCase: BonusOperationUseCase) :
     androidx.lifecycle.ViewModel(),
     KoinComponent {
-    private val _state = MutableStateFlow(
-        ContactListState(
-            contacts
-        )
-    )
+    private val _state = MutableStateFlow(ContactListState(contacts))
 
     val state = _state.asStateFlow()
+
+    private val _bonusState = MutableStateFlow<List<BonusAccountItemDom>>(emptyList())
+
+    val bonusState = _bonusState.asStateFlow()
     var newContact: ContactDom? by mutableStateOf(null)
         private set
 
@@ -33,6 +35,15 @@ class ContactListViewModel(private val bonusOperationUseCase: BonusOperationUseC
     private fun getBonus() {
         viewModelScope.launch {
             bonusOperationUseCase("sd").collect {
+                when (it) {
+                    is ResultDom.Success.Value -> {
+                        _bonusState.emit(it.value.operations)
+                    }
+
+                    else -> {
+
+                    }
+                }
                 println(it)
             }
         }

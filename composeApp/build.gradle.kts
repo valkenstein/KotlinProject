@@ -9,9 +9,10 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     id("com.google.devtools.ksp") version "2.0.0-1.0.22"
     id("de.jensklingenberg.ktorfit") version "2.0.0"
+    //id("dev.icerock.mobile.multiplatform-resources")
 }
 
-configure<de.jensklingenberg.ktorfit.gradle.KtorfitGradleConfiguration>{
+configure<de.jensklingenberg.ktorfit.gradle.KtorfitGradleConfiguration> {
     version = libs.versions.ktorfit.asProvider().get()
 }
 kotlin {
@@ -21,7 +22,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -30,11 +31,19 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+//            export("dev.icerock.moko:resources:0.24.1")
+//            export("dev.icerock.moko:graphics:0.9.0")
         }
     }
-    
+//    multiplatformResources {
+//        resourcesPackage.set("org.example.library") // required
+//        resourcesClassName.set("SharedRes") // optional, default MR
+//        resourcesVisibility.set(MRVisibility.Internal) // optional, default Public
+//        iosBaseLocalizationRegion.set("en") // optional, default "en"
+//        iosMinimalDeploymentTarget.set("11.0") // optional, default "9.0"
+//    }
+
     sourceSets {
-        
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -47,10 +56,17 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+
+            //mvvm
             implementation(libs.mvvm.core)
             implementation(libs.mvvm.compose)
             implementation(libs.mvvm.flow)
             implementation(libs.mvvm.flow.compose)
+
+
+            //resource
+//            implementation(libs.resources)
+//            implementation(libs.resources.compose) // for compose multiplatform
 
             /**
              * Ktor & Ktorfit
@@ -61,7 +77,8 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.jensklingenberg.ktorfit)
-            implementation (libs.koin.core)
+            //koin
+            implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.composeVM)
             //ksp("de.jensklingenberg.ktorfit:ktorfit-ksp:1.0.0") // версия KSP процессора Ktorfit
@@ -111,7 +128,16 @@ android {
         debugImplementation(compose.uiTooling)
     }
 }
+//multiplatformResources {
+//    resourcesPackage.set("org.example.project") // required
+//    resourcesClassName.set("SharedRes") // optional, default MR
+//    resourcesVisibility.set(MRVisibility.Internal) // optional, default Public
+//    iosBaseLocalizationRegion.set("en") // optional, default "en"
+//    iosMinimalDeploymentTarget.set("11.0") // optional, default "9.0"
+//}
 dependencies {
     implementation(libs.androidx.ui.android)
+    implementation(libs.androidx.ui.tooling.preview.android)
+    implementation(libs.androidx.ui.tooling.preview.desktop)
 }
 

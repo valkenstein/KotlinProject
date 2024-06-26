@@ -17,7 +17,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -26,7 +25,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import domain.model.BonusAccountItemDom
+import kotlinproject.composeapp.generated.resources.Res
+import kotlinproject.composeapp.generated.resources.ic_r
 import org.jetbrains.compose.resources.painterResource
+import ui.BaseBlack
+import ui.BaseGreen
+import ui.BaseRed
+import ui.BtDisable
 import utils.formattedNumber
 
 
@@ -65,7 +70,7 @@ fun TittleBonus(title: String) {
             }
         },
         modifier = Modifier.padding(16.dp),
-        style = styleDefault,
+        //style = styleDefault,
         fontWeight = FontWeight.Bold,
         fontSize = 28.sp
     )
@@ -75,16 +80,15 @@ fun TittleBonus(title: String) {
 fun OperationsBonus(title: String, modifier: Modifier = Modifier) {
     Text(
         text = title,
-        style = styleDefault,
+        //style = styleDefault,
         fontWeight = FontWeight.Bold,
         fontSize = 12.sp,
         letterSpacing = 0.08.em,
-        color = colorResource(id = R.color.base_red_color),
+       color = BaseRed,
         modifier = modifier
     )
 }
 
-@Preview(showBackground = true)
 @Composable
 fun ItemBonusAccount(
     bonusAccountItemDom: BonusAccountItemDom = BonusAccountItemDom(
@@ -107,20 +111,20 @@ fun ItemBonusAccount(
         ) {
             Text(
                 text = bonusAccountItemDom.date.uppercase(),
-                style = styleDefault,
+             //   style = styleDefault,
                 fontWeight = FontWeight.Bold,
                 letterSpacing = 0.08.em,
-                color = colorResource(id = R.color.bt_disable),
+                color = BtDisable,
                 fontSize = 12.sp,
                 modifier = Modifier.wrapContentWidth()
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text(
                 text = bonusAccountItemDom.text,
-                style = styleDefault,
+              //  style = styleDefault,
                 fontWeight = FontWeight.Normal,
                 letterSpacing = 0.02.em,
-                color = colorResource(id = R.color.almost_black),
+                color = BaseBlack,
                 fontSize = 16.sp,
                 modifier = Modifier.wrapContentWidth()
             )
@@ -133,11 +137,11 @@ fun ItemBonusAccount(
             Text(
                 text = bonusAccountItemDom.type + " " + bonusAccountItemDom.bonus.formattedNumber()
                     .trim(),
-                style = styleDefault,
+              //  style = styleDefault,
                 fontWeight = FontWeight.Bold,
-                color = if (bonusAccountItemDom.type == "+") colorResource(id = R.color.green) else colorResource(
-                    id = R.color.base_red_color
-                ),
+                color = if (bonusAccountItemDom.type == "+")
+                    BaseGreen
+                else BaseRed,
                 fontSize = 20.sp,
                 modifier = Modifier
                     .wrapContentWidth()
@@ -145,15 +149,15 @@ fun ItemBonusAccount(
             )
             Spacer(modifier = Modifier.size(4.dp))
             Image(
-                painter = painterResource(id = R.drawable.ic_r),
+                painter = painterResource(Res.drawable.ic_r),
                 contentDescription = "",
                 modifier = Modifier
                     .height(14.dp)
                     .align(Alignment.CenterVertically),
                 colorFilter = ColorFilter.tint(
-                    if (bonusAccountItemDom.type == "+") colorResource(id = R.color.green) else colorResource(
-                        id = R.color.base_red_color
-                    )
+                    if (bonusAccountItemDom.type == "+")
+                        BaseGreen
+                    else BaseRed
                 )
             )
         }

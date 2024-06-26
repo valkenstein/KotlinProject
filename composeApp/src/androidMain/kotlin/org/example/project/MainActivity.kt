@@ -2,18 +2,13 @@ package org.example.project
 
 import App
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import domain.BonusOperationUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
-import network.di.KoinInjector
-import org.koin.java.KoinJavaComponent.inject
 import presentation.component.AppProject
 
 class MainActivity : ComponentActivity() {

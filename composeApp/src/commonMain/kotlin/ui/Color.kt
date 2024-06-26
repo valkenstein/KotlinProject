@@ -2,6 +2,20 @@ package ui
 
 import androidx.compose.ui.graphics.Color
 
+fun hexToColor(hex: String): Color {
+    val hexColor = if (hex.startsWith("#")) hex.substring(1) else hex
+    val colorInt = hexColor.toLong(16).toInt()
+
+    // Если hex не содержит альфа-канала, добавим FF как значение по умолчанию для альфа-канала
+    val colorWithAlpha = if (hexColor.length == 6) {
+        0xFF000000.toInt() or colorInt
+    } else {
+        colorInt
+    }
+
+    return Color(colorWithAlpha)
+}
+
 // LIGHT
 val GreenPrimaryLight = Color(0xff006e26)
 val OnGreenLight = Color(0xffffffff)
@@ -61,3 +75,9 @@ val SurfaceVariantDark = Color(0xff424940)
 val OnSurfaceVariantDark = Color(0xffc2c9bd)
 
 val OutlineDark = Color(0xff72796f)
+
+val BaseRed = hexToColor("#E21B25") //Color(0xff72796f)
+val BaseGreen = hexToColor("#31c368")
+val BaseBlack = hexToColor("#112233")
+val BtDisable = hexToColor("#989898")
+
