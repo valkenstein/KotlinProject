@@ -1,3 +1,5 @@
+package di
+
 import de.jensklingenberg.ktorfit.Ktorfit
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpRedirect
