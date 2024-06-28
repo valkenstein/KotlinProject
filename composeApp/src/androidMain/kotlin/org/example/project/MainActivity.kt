@@ -1,7 +1,11 @@
 package org.example.project
 
 import App
+import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
@@ -10,6 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import presentation.component.AppProject
+import presentation.component.bonus.ItemBonusAccount
 
 class MainActivity : ComponentActivity() {
     //private val bonusOperationUseCase: BonusOperationUseCase by inject()
@@ -28,6 +33,10 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
+        return super.onCreateView(name, context, attrs)
+    }
+
 //    private fun getBonus() {
 //        scope.launch {
 //            try {
@@ -41,8 +50,8 @@ class MainActivity : ComponentActivity() {
 //    }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun AppAndroidPreview() {
-    App()
+    ItemBonusAccount()
 }

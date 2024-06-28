@@ -1,10 +1,12 @@
 package presentation.component.bonus
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -28,6 +31,7 @@ import domain.model.BonusAccountItemDom
 import kotlinproject.composeapp.generated.resources.Res
 import kotlinproject.composeapp.generated.resources.ic_r
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import ui.BaseBlack
 import ui.BaseGreen
 import ui.BaseRed
@@ -89,6 +93,7 @@ fun OperationsBonus(title: String, modifier: Modifier = Modifier) {
     )
 }
 
+@Preview()
 @Composable
 fun ItemBonusAccount(
     bonusAccountItemDom: BonusAccountItemDom = BonusAccountItemDom(
@@ -101,13 +106,12 @@ fun ItemBonusAccount(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .wrapContentHeight()
+           // .background(Color.Gray)
             .padding(horizontal = 16.dp),
     ) {
         Column(
             Modifier
-                .wrapContentHeight()
-                .fillMaxWidth(),
+                .fillMaxHeight().align(Alignment.TopStart),
         ) {
             Text(
                 text = bonusAccountItemDom.date.uppercase(),
@@ -116,9 +120,9 @@ fun ItemBonusAccount(
                 letterSpacing = 0.08.em,
                 color = BtDisable,
                 fontSize = 12.sp,
-                modifier = Modifier.wrapContentWidth()
+                modifier = Modifier.padding(0.dp)//.background(Color.Gray).padding(0.dp)//.wrapContentWidth()
             )
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.size(12.dp))
             Text(
                 text = bonusAccountItemDom.text,
               //  style = styleDefault,
@@ -145,7 +149,7 @@ fun ItemBonusAccount(
                 fontSize = 20.sp,
                 modifier = Modifier
                     .wrapContentWidth()
-                    .align(Alignment.CenterVertically)
+                    .padding(0.dp)
             )
             Spacer(modifier = Modifier.size(4.dp))
             Image(

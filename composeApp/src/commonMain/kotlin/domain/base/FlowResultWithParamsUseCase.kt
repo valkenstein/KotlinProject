@@ -18,3 +18,22 @@ abstract class FlowResultWithParamsUseCase<Param, Data> {
         return value
     }
 }
+abstract class FlowResultUseCase<T> {
+    operator fun invoke(): Flow<ResultDom<T>> = flow {
+        val result = retrieveData()
+        if (result.isSuccess()) {
+            emit(result)
+        } else {
+            emit(result)
+        }
+    }
+
+    abstract suspend fun retrieveData(): ResultDom<T>
+}
+abstract class FlowResultWithDoubleParamsUseCase<Param1, Param2, Data> {
+    operator fun invoke(params1: Param1, params2: Param2): Flow<ResultDom<Data>> = flow {
+        emit(retrieveData(params1, params2))
+    }
+
+    abstract suspend fun retrieveData(params1: Param1, params2: Param2): ResultDom<Data>
+}

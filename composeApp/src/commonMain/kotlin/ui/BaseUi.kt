@@ -1,15 +1,9 @@
 package ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.platform.Font
 import org.jetbrains.compose.resources.Font
-import androidx.compose.ui.text.style.LineHeightStyle
-import androidx.compose.ui.unit.sp
 import kotlinproject.composeapp.generated.resources.Res
 import kotlinproject.composeapp.generated.resources.proxima_nova_bold
 import kotlinproject.composeapp.generated.resources.proxima_nova_regular
@@ -19,7 +13,6 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 //
 
 object BaseUi {
-    @OptIn(ExperimentalResourceApi::class)
     @Composable
     fun getTypography() = FontFamily(
             Font(Res.font.proxima_nova_regular, FontWeight.Normal),

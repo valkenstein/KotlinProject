@@ -2,12 +2,10 @@ package ui
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import kotlinproject.composeapp.generated.resources.Res
-import kotlinproject.composeapp.generated.resources.proxima_nova_regular
 import ui.BaseUi.getTypography
 
 // Set of Material typography styles to start with
@@ -18,8 +16,9 @@ fun getTypography() = Typography(
         fontFamily = getTypography(),
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        //platformStyle = androidx.compose.ui.text.PlatformTextStyle(includeFontPadding = false),
+        letterSpacing = 0.5.sp,
+
     )
 )
 

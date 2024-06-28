@@ -11,7 +11,11 @@ object KoinInjector {
         loadKoinModules(
             listOf(
                 networkModule,
+                apiModule,
                 repositoryModule,
+                mvvmModule,
+                useCaseModule,
+                mapperModule,
             )
         )
     }
