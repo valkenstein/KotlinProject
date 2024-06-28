@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.koin.core.component.KoinComponent
 
+
 class InviteViewModel constructor(
     private val getInviteListUseCase: GetInviteListUseCase,
     private val removeInviteUseCase: RemoveInviteUseCase,
