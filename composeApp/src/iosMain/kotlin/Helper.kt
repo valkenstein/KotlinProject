@@ -1,6 +1,4 @@
-import network.di.KoinInjector
-import network.di.repositoryModule
-import org.koin.core.context.startKoin
+import di.KoinInjector
 
 fun initKoin() {
     KoinInjector.koinApp

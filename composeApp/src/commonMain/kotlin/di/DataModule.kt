@@ -1,6 +1,9 @@
-package network.di
+package di
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import domain.mapper.Empty2Mapper
+import domain.mapper.InviteGenerationMapper
+import domain.mapper.InviteListMapper
 import domain.usecase.BonusOperationUseCase
 import domain.mapper.ProfileAccumulativeInfoMapper
 import domain.usecase.GenerationInviteCodeUseCase
@@ -42,6 +45,9 @@ internal val mvvmModule = module {
 }
 
 internal val mapperModule = module {
+    factory { Empty2Mapper() }
+    factory { InviteGenerationMapper(get()) }
+    factory { InviteListMapper() }
     factory { ProfileAccumulativeInfoMapper() }
 }
 

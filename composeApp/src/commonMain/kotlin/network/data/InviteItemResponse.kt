@@ -1,8 +1,10 @@
 package network.data
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 
+@Serializable
 class InviteResponse {
     @SerialName("navigation")
     val navigation: NavigationResponse? = null
@@ -16,6 +18,7 @@ class InviteResponse {
     @SerialName("statuses")
     val statuses: Map<String, String>? = null
 }
+@Serializable
 data class NavigationResponse(
     @SerialName("nextPage") val nextPage: String?,
     @SerialName("prevPage") val prevPage: String?,
@@ -29,7 +32,7 @@ class InviteCountResponse {
     @SerialName("count")
     val count: Int? = null
 }
-
+@Serializable
 class InviteItemResponse(
     @SerialName("id") val id: String?,
     @SerialName("code") val code: String?,
@@ -45,6 +48,7 @@ class InviteItemResponse(
     @SerialName("linkActivate") val linkActivate: String?,
     @SerialName("statusTime") val statusTime: StatusTimeResponse?,
 )
+@Serializable
 data class StatusTimeResponse(
     @SerialName("day") val day: String?,
     @SerialName("hours") val hours: String?,

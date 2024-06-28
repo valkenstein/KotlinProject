@@ -1,6 +1,5 @@
-package network.di
+package di
 
-import networkModule
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level

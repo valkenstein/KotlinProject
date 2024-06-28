@@ -18,8 +18,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.koin.core.component.KoinComponent
 
-
-class InviteViewModel constructor(
+class InviteViewModel (
     private val getInviteListUseCase: GetInviteListUseCase,
     private val removeInviteUseCase: RemoveInviteUseCase,
     private val informationInviteUseCase: InformationInviteUseCase,
@@ -32,6 +31,10 @@ class InviteViewModel constructor(
     private val _generationInviteFlow = MutableSharedFlow<InviteCellDom>()
     val generationInviteFlow = _generationInviteFlow.asSharedFlow()
     val currentState = CurrentStateInvite()
+    init {
+        init()
+    }
+
     fun init() {
         launchInVMScope {
             showLoading()
