@@ -3,8 +3,6 @@ package presentation
 import android.app.Activity
 import android.os.Build
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
@@ -13,6 +11,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import ui.DarkColorScheme
 import ui.LightColorScheme
+import ui.getTypography
 
 @Composable
 actual fun ProjectTheme(
@@ -23,7 +22,7 @@ actual fun ProjectTheme(
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (darkTheme) DarkColorScheme else LightColorScheme
         }
 
         darkTheme -> DarkColorScheme
@@ -44,7 +43,7 @@ actual fun ProjectTheme(
     }
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = ui.getTypography(),
+        typography = getTypography(),
         content = content
     )
 }

@@ -56,14 +56,14 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-
+//pull
             //mvvm
             implementation(libs.mvvm.core)
             implementation(libs.mvvm.compose)
             implementation(libs.mvvm.flow)
             implementation(libs.mvvm.flow.compose)
-
-
+            //lottie
+            implementation("io.github.alexzhirkevich:compottie:1.1.2")
             //resource
 //            implementation(libs.resources)
 //            implementation(libs.resources.compose) // for compose multiplatform

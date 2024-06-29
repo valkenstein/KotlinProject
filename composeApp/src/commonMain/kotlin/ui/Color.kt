@@ -78,6 +78,11 @@ val OutlineDark = Color(0xff72796f)
 
 val BaseRed = hexToColor("#E21B25") //Color(0xff72796f)
 val BaseGreen = hexToColor("#31c368")
+val Yellow = hexToColor("#31c368")
+val gray_filters = hexToColor("#F5F6FA")
+val gray_dialog = hexToColor("#E5E5E5")
+val bt_disable = hexToColor("#989898")
+val gray_category = hexToColor("#F9F9F9")
 val BaseBlack = hexToColor("#112233")
 val BtDisable = hexToColor("#989898")
 

@@ -12,6 +12,21 @@ fun String.formattedNumber(): String {
     }
     return str.reversed().trim()
 }
+fun String.toPrice(): String {
+    if (this.isEmpty()) return ""
+    if (this.contains('₽')) return this
+    if (last() == '%') return this
+    var str = ""
+    val rootString = this.replace("₽", "").replace(" ", "")
+    if (rootString.isEmpty()) return str
+    rootString.reversed().forEachIndexed { index, c ->
+        if (index % 3 == 0)
+            str += " $c"
+        else
+            str += c
+    }
+    return "${str.reversed()}₽"
+}
 fun String.decliningInvait(): String {
     var finishedResult = ""
     val str = this

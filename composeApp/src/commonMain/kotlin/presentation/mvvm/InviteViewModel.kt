@@ -11,6 +11,7 @@ import domain.usecase.GetInviteListUseCase
 import domain.usecase.InformationInviteUseCase
 import domain.usecase.RemoveInviteUseCase
 import domain.usecase.RestoreInviteCodeUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -100,6 +101,7 @@ class InviteViewModel (
     fun nextPage() {
         currentState.selectPage(currentState.page + 1)
         launchInVMScope {
+            delay(2000)
             getInviteListUseCase(
                 currentState.page,
                 currentState.selectedFilter.key

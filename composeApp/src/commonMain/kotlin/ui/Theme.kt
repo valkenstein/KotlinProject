@@ -3,6 +3,40 @@ package ui
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 
+
+//val DarkColorScheme: Colors = darkColors(
+//    primary = GreenPrimaryDark,
+//    //primaryVariant = GreenPrimaryVariantDark,
+//    secondary = GreenSecondaryDark,
+//    //secondaryVariant = GreenSecondaryVariantDark,
+//    background = BackgroundDark,
+//    surface = SurfaceDark,
+//    error = ErrorDark,
+//    onPrimary = OnGreenDark,
+//    onSecondary = OnGreenSecondaryDark,
+//    onBackground = OnBackgroundDark,
+//    onSurface = OnSurfaceDark,
+//    onError = OnErrorDark,
+//    // If you need more custom colors, you can add them manually later in the theme
+//)
+//
+//// Light color scheme
+//val LightColorScheme: Colors = lightColors(
+//    primary = GreenPrimaryLight,
+//    //primaryVariant = GreenPrimaryVariantLight,
+//    secondary = GreenSecondaryLight,
+//    //secondaryVariant = GreenSecondaryVariantLight,
+//    background = BackgroundLight,
+//    surface = SurfaceLight,
+//    error = ErrorLight,
+//    onPrimary = OnGreenLight,
+//    onSecondary = OnGreenSecondaryLight,
+//    onBackground = OnBackgroundLight,
+//    onSurface = OnSurfaceLight,
+//    onError = OnErrorLight,
+//    // If you need more custom colors, you can add them manually later in the theme
+//)
+
 val DarkColorScheme = darkColorScheme(
     primary = GreenPrimaryDark,
     secondary = GreenSecondaryDark,

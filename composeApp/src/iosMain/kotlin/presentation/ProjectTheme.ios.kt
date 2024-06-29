@@ -4,6 +4,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import ui.DarkColorScheme
 import ui.LightColorScheme
+import ui.getTypography
 
 @Composable
 actual fun ProjectTheme(
@@ -13,7 +14,7 @@ actual fun ProjectTheme(
 ) {
     MaterialTheme(
         colorScheme = if(darkTheme) DarkColorScheme else LightColorScheme,
-        typography = ui.getTypography(),
+        typography = getTypography(),
         content = content
     )
 }

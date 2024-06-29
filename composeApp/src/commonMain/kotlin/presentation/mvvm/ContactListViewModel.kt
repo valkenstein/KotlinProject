@@ -16,8 +16,7 @@ import presentation.ContactListEvent
 import presentation.ContactListState
 
 class ContactListViewModel(private val bonusOperationUseCase: BonusOperationUseCase) :
-    androidx.lifecycle.ViewModel(),
-    KoinComponent {
+    BaseViewModel(), KoinComponent {
     private val _state = MutableStateFlow(ContactListState(contacts))
 
     val state = _state.asStateFlow()
@@ -34,16 +33,8 @@ class ContactListViewModel(private val bonusOperationUseCase: BonusOperationUseC
 
     private fun getBonus() {
         viewModelScope.launch {
-            bonusOperationUseCase("sd").collect {
-                when (it) {
-                    is ResultDom.Success.Value -> {
-                        _bonusState.emit(it.value.operations)
-                    }
-
-                    else -> {
-
-                    }
-                }
+            bonusOperationUseCase("sd").collectSuccess {
+                _bonusState.emit(it.operations)
                 println(it)
             }
         }

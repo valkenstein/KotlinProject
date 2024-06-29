@@ -1,9 +1,7 @@
 package org.example.project
 
 import android.app.Application
-import network.di.KoinInjector
-import network.di.repositoryModule
-import networkModule
+import di.KoinInjector
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 

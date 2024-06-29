@@ -1,3 +1,6 @@
 package network.data
 
-data class EmptyResponse(var text: String)
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class EmptyResponse( val text: String? = null)

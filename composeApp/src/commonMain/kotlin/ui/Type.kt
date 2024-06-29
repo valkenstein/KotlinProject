@@ -12,13 +12,19 @@ import ui.BaseUi.getTypography
 
 @Composable
 fun getTypography() = Typography(
+    bodySmall = TextStyle(
+        fontFamily = getTypography(),
+        fontWeight = FontWeight.Normal,
+        //fontSize = 16.sp,
+        //platformStyle = androidx.compose.ui.text.PlatformTextStyle(includeFontPadding = false),
+        //letterSpacing = 0.5.sp,
+    ),
     bodyLarge = TextStyle(
         fontFamily = getTypography(),
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
+        //fontSize = 16.sp,
         //platformStyle = androidx.compose.ui.text.PlatformTextStyle(includeFontPadding = false),
-        letterSpacing = 0.5.sp,
-
+        //letterSpacing = 0.5.sp,
     )
 )
 
