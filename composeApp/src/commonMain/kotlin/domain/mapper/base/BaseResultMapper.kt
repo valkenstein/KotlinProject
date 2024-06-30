@@ -17,7 +17,7 @@ abstract class BaseResultMapper<Source, Target> :
         }
     }
 
-    private fun handleFailureResult(error: Throwable?, errorId: String): ResultDom<Target> {
+    fun handleFailureResult(error: Throwable?, errorId: String): ResultDom<Target> {
         return ResultDom.Failure.ErrorMessages(error, errorId = errorId)
     }
 
@@ -25,18 +25,10 @@ abstract class BaseResultMapper<Source, Target> :
         src: BaseResponse<Source>,
         mapSuccessResult: (BaseResponse<Source>) -> Target,
     ): ResultDom<Target> {
-       return try {
-            handleSuccessResult(src) { mapSuccessResult(src) }
+        return handleSuccessResult(src) { mapSuccessResult(src) }
 //            val value = src
 //            ResultDom.Success.Value(handleSuccessResult(params, retrieveData(params)))
-        } catch (e: Exception) {
-            handleFailureResult(
-                e,
-                e.message.toString(),
-              //  "0"//src.asFailure().error ?: "" // тут краш будет
-            )
-            ResultDom.Failure.Error(Throwable(e.message))
-        }
+
 //        return if (src.isSuccess()) {
 //            val value = src.asSuccess().value
 //            handleSuccessResult(value) { mapSuccessResult(value) }

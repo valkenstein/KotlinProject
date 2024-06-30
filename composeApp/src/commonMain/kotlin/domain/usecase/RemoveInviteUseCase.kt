@@ -8,6 +8,7 @@ class RemoveInviteUseCase constructor(
     private val profileRepository: ProfileRepository,
     private val profileOrderMapper: Empty2Mapper,
 ) : FlowResultWithParamsUseCase<String, String>() {
-    override suspend fun retrieveData(params: String)=  profileOrderMapper.map(profileRepository.removeInvite(params))
+    override suspend fun retrieveData(params: String) =
+        profileOrderMapper.map { profileRepository.removeInvite(params) }
 
 }

@@ -1,4 +1,4 @@
-package presentation.component
+package presentation.component.Contact
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer

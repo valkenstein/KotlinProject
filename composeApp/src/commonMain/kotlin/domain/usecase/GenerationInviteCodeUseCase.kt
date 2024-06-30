@@ -9,6 +9,6 @@ class GenerationInviteCodeUseCase  constructor(
     private val profileRepository: ProfileRepository,
     private val InviteGenerationMapper: InviteGenerationMapper,
 ) : FlowResultUseCase<InviteCellDom>() {
-    override suspend fun retrieveData() =  InviteGenerationMapper.map(profileRepository.generationInviteCode())
+    override suspend fun retrieveData() =  InviteGenerationMapper.map(profileRepository::generationInviteCode)
 
 }

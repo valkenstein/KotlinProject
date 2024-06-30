@@ -1,4 +1,4 @@
-package presentation.component
+package presentation.component.Contact
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

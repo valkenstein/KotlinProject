@@ -50,6 +50,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import cafe.adriel.voyager.navigator.Navigator
 import domain.model.DialogNotification
 import domain.model.InviteCellDom
 import domain.model.StateInvite
@@ -83,7 +84,7 @@ import utils.stateRemember
 
 @OptIn(ExperimentalMaterial3Api::class, KoinExperimentalAPI::class)
 @Composable
-fun InviteInitBottomSheet() {
+fun InviteInitBottomSheet(navigator: Navigator) {
     val viewModel: InviteViewModel = koinViewModel()
 
     var isSheetOpen = rememberSaveable { mutableStateOf(false) }
@@ -371,7 +372,7 @@ fun InviteList(
                     )
                 }
             items(1) {
-                Spacer(modifier = Modifier.size(180.dp))
+                Spacer(modifier = Modifier.size(80.dp))
             }
         }
     }

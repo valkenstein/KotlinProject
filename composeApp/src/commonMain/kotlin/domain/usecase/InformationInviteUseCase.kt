@@ -10,6 +10,7 @@ class InformationInviteUseCase  constructor(
     private val InviteGenerationMapper: InviteGenerationMapper,
 ) : FlowResultWithParamsUseCase<String, InviteCellDom>() {
     override suspend fun retrieveData(params: String) =
-        InviteGenerationMapper.map(profileRepository.informationInvite(params))
-
+        InviteGenerationMapper.map{
+            profileRepository.informationInvite(params)
+        }
 }

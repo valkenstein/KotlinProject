@@ -8,5 +8,4 @@ class Empty2Mapper constructor(
 ) : FullResultMapper<EmptyResponse, String>() {
     override fun mapSuccessResult(src: BaseResponse<EmptyResponse>): String =
         src.data?.text ?: "" + src.message
-
 }

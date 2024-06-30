@@ -9,6 +9,6 @@ class RestoreInviteCodeUseCase constructor(
     private val profileRepository: ProfileRepository,
     private val InviteGenerationMapper: InviteGenerationMapper,
 ) : FlowResultWithParamsUseCase<String, InviteCellDom>() {
-    override suspend fun retrieveData(params: String) =  InviteGenerationMapper.map(profileRepository.restoreInviteCode(params))
+    override suspend fun retrieveData(params: String) =  InviteGenerationMapper.map{profileRepository.restoreInviteCode(params)}
 
 }

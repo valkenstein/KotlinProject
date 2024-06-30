@@ -1,75 +1,58 @@
 package presentation.component
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import org.koin.compose.viewmodel.koinViewModel
+import cafe.adriel.voyager.navigator.tab.CurrentTab
+import cafe.adriel.voyager.navigator.tab.TabNavigator
 import presentation.ProjectTheme
-import presentation.component.invite.InviteInitBottomSheet
-import presentation.component.bonus.LazyBonusAccounts
-import presentation.mvvm.ContactListViewModel
+import presentation.screen.tab.BasketTab
+import presentation.screen.tab.BonusTab
+import presentation.screen.tab.InviteTab
+import presentation.screen.tab.ProfileTab
+import presentation.screen.tab.VitrinaTab
+import utils.TabNavigationItem
 
 @Composable
 fun AppProject(
     darkTheme: Boolean,
     dynamicColor: Boolean,
 ) {
-//    KoinApplication(application = {
-//            KoinInjector.koinApp.koin
-//        }) {
     ProjectTheme(
         darkTheme,
         dynamicColor
     ) {
-//
-
-        InviteInitBottomSheet()
-
-
-        //BonusInit()
-//        val viewModel = getViewModel(
-//            key = "contact-list",
-//            factory = viewModelFactory {
-//                ContactListViewModel()
-//            }
-//        )
-
-
-
-
-//        val state by viewModel.state.collectAsState()
-//        Surface(
-//            modifier = Modifier.fillMaxSize(),
-//            color = MaterialTheme.colorScheme.background
-//        ) {
-//            ContactListScreen(
-//                state = state,
-//                newConcat = viewModel.newContact,
-//                onEvent = viewModel::onEvent
-//            )
-//
-//        }
-    }
-    //}
-}
-
-@Composable
-fun BonusInit(){
-    val viewModel: ContactListViewModel = koinViewModel()
-    val bonusOperation by viewModel.bonusState.collectAsState()
-    Column(Modifier.fillMaxSize()) {
-        ToolbarBase(Modifier.padding(16.dp), title = "Бонусный счет") {
-            //zfindNavController().popBackStack()
+        TabNavigator(BonusTab) {
+            Scaffold(
+                content = { paddingValues ->
+                    Box(
+                        modifier = Modifier
+                            .padding(bottom = paddingValues.calculateBottomPadding())
+                    ) {
+                        CurrentTab()
+                    }
+                },
+                bottomBar = {
+                    NavigationBar(
+                        modifier = Modifier.height(56.dp),
+                        containerColor = Color.White
+                    ) {
+                        TabNavigationItem(BonusTab)
+                        TabNavigationItem(InviteTab)
+                        TabNavigationItem(VitrinaTab)
+                        TabNavigationItem(ProfileTab)
+                        TabNavigationItem(BasketTab)
+                    }
+                }
+            )
         }
-        LazyBonusAccounts(
-            bonusOperation.count().toString(),
-            bonusOperation,
-            Modifier.weight(1.0f)
-        )
     }
 }
+
+
