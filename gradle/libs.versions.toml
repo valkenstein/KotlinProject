@@ -31,6 +31,7 @@ kotlinx-serialization = "1.6.0"
 uiAndroid = "1.6.8"
 uiToolingPreviewAndroid = "1.6.8"
 uiToolingPreviewDesktop = "1.6.8"
+voyagerVersion = "1.1.0-beta02"
 [libraries]
 compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
@@ -68,6 +69,9 @@ androidx-ui-tooling-preview-desktop = { group = "androidx.compose.ui", name = "u
 resources = { module = "dev.icerock.moko:resources", version.ref = "resources" }
 resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "resources" }
 resources-generator = { module = "dev.icerock.moko:resources-generator", version.ref = "resources" }
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyagerVersion" }
+voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion" }
+voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 
 
 [plugins]

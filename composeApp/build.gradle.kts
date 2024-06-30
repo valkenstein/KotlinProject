@@ -63,13 +63,10 @@ kotlin {
             implementation(libs.mvvm.flow)
             implementation(libs.mvvm.flow.compose)
             //voyager
-            val voyagerVersion = "1.0.0"
             // Navigator
-            implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
-            // TabNavigator
-            implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
-            // Transitions
-            implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
+            implementation(libs.voyager.navigator)
+            implementation(libs.voyager.tab.navigator)
+            implementation(libs.voyager.transitions)
 
             //lottie
             implementation(libs.compottie)
