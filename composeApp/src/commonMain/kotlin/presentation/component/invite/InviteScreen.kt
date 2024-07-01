@@ -96,7 +96,10 @@ fun InviteInitBottomSheet(navigator: Navigator) {
 
     if (isSheetOpen.value && stateInvite.value != null) {
         ModalBottomSheet(
+            //modifier = Modifier.padding(horizontal = 16.dp),
             sheetState = sheetState,
+            //scrimColor = Color.White,
+            tonalElevation = 8.dp,
             onDismissRequest = {
                 isSheetOpen.value = false
             },
@@ -232,7 +235,7 @@ fun InviteList(
             if (i && viewModel.currentState.hasNextPage) viewModel.nextPage()
         }
         LazyColumn(
-            state = scrollState
+            state = scrollState,
         ) {
             items(1) {
                 Spacer(modifier = Modifier.size(20.dp))

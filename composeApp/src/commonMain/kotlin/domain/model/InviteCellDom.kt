@@ -1,5 +1,7 @@
 package domain.model
 
+import randomUUID
+
 
 data class InviteCell(
     val list: List<InviteCellDom> = listOf(
@@ -19,6 +21,7 @@ data class InviteListDom(
     val inviteCodes: List<InviteCellDom> = emptyList(),
     val statuses: List<MapKey> = listOf(),
 )
+
 data class NavigationDom(
     val nextPage: Int = 0,
     val prevPage: Int = 0,
@@ -35,6 +38,7 @@ data class MapKey(
 )
 
 data class InviteCellDom(
+    val id: String = randomUUID(),
     val code: String = "RH2505",
     val status: StatusInvite = StatusInvite.WAIT,
     val dateTimeActiveToText: String = "до 19 августа, 23:15",
@@ -50,6 +54,7 @@ data class InviteCellDom(
     val slider: Float = 0f,
     val sliderPrice: Float = 0f,
 )
+
 data class BoldTypeCustomerInfo(
     val bold: Boolean = false,
     val text: String

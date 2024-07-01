@@ -38,7 +38,6 @@ fun ComposeShareInviteMiniBottomSheet(
     ComposeBaseBottomSheet(
         Modifier
             .padding(horizontal = 16.dp)
-            .background(Color.White)
     ) {
         Spacer(modifier = Modifier.size(16.dp))
         Box(modifier = Modifier.fillMaxWidth()) {

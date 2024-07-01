@@ -34,3 +34,4 @@
 //    bitmap.setPixels(pixels, 0, qrSize, 0, 0, qrSize, qrSize)
 //    return bitmap
 //}
+expect fun randomUUID(): String

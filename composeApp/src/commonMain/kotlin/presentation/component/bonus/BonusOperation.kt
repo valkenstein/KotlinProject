@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -75,7 +76,7 @@ fun LazyBonusAccounts(
                 TittleBonus(title)
                 Spacer(modifier = Modifier.height(40.dp))
             }
-        items(list.count()) { item ->
+        items(list.count(), key = { list[it].id }) { item ->
             ItemBonusAccount(list[item])
             Spacer(modifier = Modifier.height(32.dp))
         }
@@ -111,7 +112,7 @@ fun OperationsBonus(title: String, modifier: Modifier = Modifier) {
         fontWeight = FontWeight.Bold,
         fontSize = 12.sp,
         letterSpacing = 0.08.em,
-       color = BaseRed,
+        color = BaseRed,
         modifier = modifier
     )
 }
@@ -129,7 +130,7 @@ fun ItemBonusAccount(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-           // .background(Color.Gray)
+            // .background(Color.Gray)
             .padding(horizontal = 16.dp),
     ) {
         Column(
@@ -138,7 +139,7 @@ fun ItemBonusAccount(
         ) {
             Text(
                 text = bonusAccountItemDom.date.uppercase(),
-             //   style = styleDefault,
+                //   style = styleDefault,
                 fontWeight = FontWeight.Bold,
                 letterSpacing = 0.08.em,
                 color = BtDisable,
@@ -148,7 +149,7 @@ fun ItemBonusAccount(
             Spacer(modifier = Modifier.size(12.dp))
             Text(
                 text = bonusAccountItemDom.text,
-              //  style = styleDefault,
+                //  style = styleDefault,
                 fontWeight = FontWeight.Normal,
                 letterSpacing = 0.02.em,
                 color = BaseBlack,
@@ -164,7 +165,7 @@ fun ItemBonusAccount(
             Text(
                 text = bonusAccountItemDom.type + " " + bonusAccountItemDom.bonus.formattedNumber()
                     .trim(),
-              //  style = styleDefault,
+                //  style = styleDefault,
                 fontWeight = FontWeight.Bold,
                 color = if (bonusAccountItemDom.type == "+")
                     BaseGreen

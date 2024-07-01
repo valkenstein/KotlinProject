@@ -2,6 +2,7 @@ package ui
 
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.ui.graphics.Color
 
 
 //val DarkColorScheme: Colors = darkColors(
@@ -64,7 +65,7 @@ val DarkColorScheme = darkColorScheme(
 )
 
 val LightColorScheme = lightColorScheme(
-    primary = GreenPrimaryLight,
+    primary = Color.White,
     secondary = GreenSecondaryLight,
     tertiary = GreenTertiaryLight,
     onPrimary = OnGreenLight,

@@ -26,16 +26,16 @@ fun ComposeBaseBottomSheet(
     Column(
         modifier = modifier.wrapContentHeight()
     ) {
-        Spacer(modifier = Modifier.size(16.dp))
-        Box(
-            modifier = Modifier
-                .height(4.dp)
-                .width(32.dp)
-                .align(Alignment.CenterHorizontally)
-                .clip(RoundedCornerShape(8.dp))
-                .background(color = gray_dialog)
-        )
-        Spacer(modifier = Modifier.size(16.dp))
+//        Spacer(modifier = Modifier.size(16.dp))
+//        Box(
+//            modifier = Modifier
+//                .height(4.dp)
+//                .width(32.dp)
+//                .align(Alignment.CenterHorizontally)
+//                .clip(RoundedCornerShape(8.dp))
+//                .background(color = gray_dialog)
+//        )
+//        Spacer(modifier = Modifier.size(16.dp))
         content.invoke(this)
     }
 }
