@@ -8,6 +8,10 @@ import kotlin.reflect.KSuspendFunction2
 abstract class FullResultMapper<Source, Target> : BaseResultMapper<Source, Target>() {
     protected abstract fun mapSuccessResult(src: BaseResponse<Source>): Target
     override suspend fun map(src: suspend () -> BaseResponse<Source>): ResultDom<Target> {
-        return mapFullResult(src.invoke(), ::mapSuccessResult)
+        return try {
+            mapFullResult(src.invoke(), ::mapSuccessResult)
+        } catch (e: Exception) {
+            handleFailureResult(e, e.message.toString())
+        }
     }
 }

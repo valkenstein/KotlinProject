@@ -37,7 +37,7 @@ val OnErrorLight = Color(0xffffffff)
 val ErrorContainerLight = Color(0xffffdad6)
 val OnErrorContainerLight = Color(0xff410002)
 
-val BackgroundLight = Color(0xfffcfdf7)
+val BackgroundLight = Color(0xfffcffff)
 val OnBackgroundLight = Color(0xff1a1c19)
 val SurfaceLight = BackgroundLight
 val OnSurfaceLight = OnBackgroundLight

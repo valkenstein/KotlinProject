@@ -25,6 +25,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
 import androidx.compose.material3.pullrefresh.PullRefreshIndicator
 import androidx.compose.material3.pullrefresh.pullRefresh
@@ -37,6 +38,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -50,6 +52,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import cafe.adriel.voyager.navigator.Navigator
 import domain.model.DialogNotification
 import domain.model.InviteCellDom
@@ -62,6 +65,9 @@ import io.github.alexzhirkevich.compottie.LottieConstants
 import io.github.alexzhirkevich.compottie.rememberLottieComposition
 import kotlinproject.composeapp.generated.resources.Res
 import kotlinproject.composeapp.generated.resources.ic_invite_bar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
@@ -86,11 +92,11 @@ import utils.stateRemember
 @Composable
 fun InviteInitBottomSheet(navigator: Navigator) {
     val viewModel: InviteViewModel = koinViewModel()
-
-    var isSheetOpen = rememberSaveable { mutableStateOf(false) }
-    var isDialogOpen = rememberSaveable { mutableStateOf(false) }
-    var removeInvite = InviteCellDom().stateRemember()
+    val isSheetOpen = rememberSaveable { mutableStateOf(false) }
+    val isDialogOpen = rememberSaveable { mutableStateOf(false) }
+    val removeInvite = InviteCellDom().stateRemember()
     val sheetState = rememberModalBottomSheetState()
+    val coroutineScope = rememberCoroutineScope()
     val stateInvite = viewModel.generationInviteFlow.collectAsState(null)
 
 
@@ -109,23 +115,46 @@ fun InviteInitBottomSheet(navigator: Navigator) {
                     ComposeShareInviteBottomSheet(stateInvite.value!!) {
                         removeInvite.value = it
                         isDialogOpen.value = true
-                        isSheetOpen.value = false
+                        setStateBottomSheet(false, coroutineScope, isSheetOpen, sheetState)
+                        //isSheetOpen.value = false
                     }
                 else ComposeShareInviteMiniBottomSheet(stateInvite.value!!)
         }
     }
-    InviteInit(viewModel, isSheetOpen)
-    if (isDialogOpen.value)
-        removeInviteCode(removeInvite, isDialogOpen, isSheetOpen, viewModel)
+    InviteInit(viewModel) {
+        setStateBottomSheet(it, coroutineScope, isSheetOpen, sheetState)
+    }
 
+    if (isDialogOpen.value)
+        removeInviteCode(removeInvite, isDialogOpen, viewModel) {
+            setStateBottomSheet(it, coroutineScope, isSheetOpen, sheetState)
+        }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+fun setStateBottomSheet(
+    it: Boolean,
+    coroutineScope: CoroutineScope,
+    isSheetOpen: MutableState<Boolean>,
+    sheetState: SheetState
+) = coroutineScope.launch {
+    if (it) {
+        isSheetOpen.value = true
+        sheetState.expand()
+    } else {
+        sheetState.hide()
+        isSheetOpen.value = false
+    }
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun removeInviteCode(
     shareInvite: MutableState<InviteCellDom>,
     isDialogOpen: MutableState<Boolean>,
-    isSheetOpen: MutableState<Boolean>,
     viewModel: InviteViewModel,
+    stateBottomSheet: (Boolean) -> Unit
 ) {
     NotificationEnableDialog(data = DialogNotification(
         bt1 = "Удалить",
@@ -133,25 +162,26 @@ fun removeInviteCode(
         title = "Удалить ${shareInvite.value.code}?",
         description = "Инвайт-код и ссылка на его активацию перестанут работать",
 
-        ), blurClick = {
-        isDialogOpen.value = false
-        //binding.dialogCompose.slowGone()
-    }, onBt1Click = {
-        //binding.bottomSheetCompose.blurBottomSheetCompose.performClick()
-        viewModel.removeInvite(shareInvite.value.code)
-        //binding.dialogCompose.slowGone()
-        isDialogOpen.value = false
-        isSheetOpen.value = false
-
-    }, onBt2Click = {
-        isDialogOpen.value = false
-        //binding.dialogCompose.slowGone()
-    })
+        ),
+        modifier = Modifier.size(width = 500.dp, height = 3000.dp),
+        blurClick = {
+            isDialogOpen.value = false
+            //binding.dialogCompose.slowGone()
+        }, onBt1Click = {
+            //binding.bottomSheetCompose.blurBottomSheetCompose.performClick()
+            viewModel.removeInvite(shareInvite.value.code)
+            //binding.dialogCompose.slowGone()
+            stateBottomSheet.invoke(false)
+            isDialogOpen.value = false
+        }, onBt2Click = {
+            isDialogOpen.value = false
+            //binding.dialogCompose.slowGone()
+        })
 }
 
 
 @Composable
-fun InviteInit(viewModel: InviteViewModel, isSheetOpen: MutableState<Boolean>) {
+fun InviteInit(viewModel: InviteViewModel, stateBottomSheet: (Boolean) -> Unit) {
     // val loading = viewModel.loadingFlow.collectAsStateWithLifecycle(ViewEvent.Loading.HideLoading, lifecycleOwner = requireActivity())
     // val viewModel: InviteViewModel = koinViewModel()
     var refreshing by false.stateRemember()
@@ -171,7 +201,7 @@ fun InviteInit(viewModel: InviteViewModel, isSheetOpen: MutableState<Boolean>) {
                 inviteData,
                 viewModel = viewModel,
                 modifier = Modifier,
-                isSheetOpen = isSheetOpen
+                stateBottomSheet = stateBottomSheet
             )
 
             StateInvite.Empty -> EmptyInviteList()
@@ -191,7 +221,7 @@ fun InviteInit(viewModel: InviteViewModel, isSheetOpen: MutableState<Boolean>) {
                         .align(Alignment.BottomCenter)
                         .padding(start = 0.dp, top = 0.dp, end = 0.dp, bottom = 0.dp),
                 ) {
-                    isSheetOpen.value = true
+                    stateBottomSheet.invoke(true)
                     viewModel.generationInviteCode()
                 }
             }
@@ -211,7 +241,7 @@ fun InviteList(
     inviteData: StateInvite.Data,
     modifier: Modifier = Modifier,
     viewModel: InviteViewModel,
-    isSheetOpen: MutableState<Boolean>
+    stateBottomSheet: (Boolean) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -317,8 +347,8 @@ fun InviteList(
                         inviteCellDom = inviteList[item]
                     ) {
                         viewModel.infoInvite(inviteList[item].code)
-                        isSheetOpen.value = true
-                        //ope(inviteList[item])
+                        stateBottomSheet.invoke(true)
+
                     }
 
                     StatusInvite.WAIT -> CellInviteWait(
@@ -330,8 +360,8 @@ fun InviteList(
                         viewModel = viewModel
                     ) {
                         viewModel.infoInvite(inviteList[item].code)
-                        isSheetOpen.value = true
-                        //openBottomSheet(inviteList[item])
+                        stateBottomSheet.invoke(true)
+
                     }
 
                     StatusInvite.EXPIRED -> CellInviteOverdue(
@@ -342,7 +372,8 @@ fun InviteList(
                         inviteCellDom = inviteList[item]
                     ) {
                         viewModel.infoInvite(inviteList[item].code)
-                        isSheetOpen.value = true
+                        stateBottomSheet.invoke(true)
+
                         //openMiniBottomSheet(inviteList[item])
                     }
 
