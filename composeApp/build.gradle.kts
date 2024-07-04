@@ -62,6 +62,9 @@ kotlin {
             implementation(libs.mvvm.compose)
             implementation(libs.mvvm.flow)
             implementation(libs.mvvm.flow.compose)
+
+            //navigation compose
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.7.0-alpha07")
             //voyager
             // Navigator
             implementation(libs.voyager.navigator)

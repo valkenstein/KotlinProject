@@ -48,7 +48,7 @@ import utils.formattedNumber
 
 
 @Composable
-fun BonusInit(currentOrThrow: Navigator) {
+fun BonusInit( ) {
     val viewModel: ContactListViewModel = koinViewModel()
     val bonusOperation by viewModel.bonusState.collectAsState()
     Column(Modifier.fillMaxSize()) {

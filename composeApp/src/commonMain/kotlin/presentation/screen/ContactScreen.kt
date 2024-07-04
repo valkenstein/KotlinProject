@@ -11,24 +11,13 @@ import cafe.adriel.voyager.core.screen.Screen
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 import presentation.component.Contact.ContactListScreen
+import presentation.component.Contact.initContact
 import presentation.mvvm.ContactListViewModel
 
 class ContactScreen : Screen {
     @OptIn(KoinExperimentalAPI::class)
     @Composable
     override fun Content() {
-        val viewModel: ContactListViewModel = koinViewModel()
-        val state by viewModel.state.collectAsState()
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        )
-        {
-            ContactListScreen(
-                state = state,
-                newConcat = viewModel.newContact,
-                onEvent = viewModel::onEvent
-            )
-        }
+        initContact()
     }
 }

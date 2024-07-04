@@ -9,15 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
 import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import presentation.ProjectTheme
-import presentation.screen.tab.BasketTab
-import presentation.screen.tab.BonusTab
-import presentation.screen.tab.InviteTab
-import presentation.screen.tab.ProfileTab
-import presentation.screen.tab.VitrinaTab
-import utils.TabNavigationItem
+import presentation.component.graph2.RootNavigationGraph
 
 @Composable
 fun AppProject(
@@ -28,30 +24,33 @@ fun AppProject(
         darkTheme,
         dynamicColor
     ) {
-        TabNavigator(BonusTab) {
-            Scaffold(
-                content = { paddingValues ->
-                    Box(
-                        modifier = Modifier
-                            .padding(bottom = paddingValues.calculateBottomPadding())
-                    ) {
-                        CurrentTab()
-                    }
-                },
-                bottomBar = {
-                    NavigationBar(
-                        modifier = Modifier.height(56.dp),
-                        containerColor = Color.White
-                    ) {
-                        TabNavigationItem(BonusTab)
-                        TabNavigationItem(InviteTab)
-                        TabNavigationItem(VitrinaTab)
-                        TabNavigationItem(ProfileTab)
-                        TabNavigationItem(BasketTab)
-                    }
-                }
-            )
-        }
+        val navController = rememberNavController()
+        RootNavigationGraph(navController = navController)
+
+//        TabNavigator(BonusTab) {
+//            Scaffold(
+//                content = { paddingValues ->
+//                    Box(
+//                        modifier = Modifier
+//                            .padding(bottom = paddingValues.calculateBottomPadding())
+//                    ) {
+//                        CurrentTab()
+//                    }
+//                },
+//                bottomBar = {
+//                    NavigationBar(
+//                        modifier = Modifier.height(56.dp),
+//                        containerColor = Color.White
+//                    ) {
+//                        TabNavigationItem(BonusTab)
+//                        TabNavigationItem(InviteTab)
+//                        TabNavigationItem(VitrinaTab)
+//                        TabNavigationItem(ProfileTab)
+//                        TabNavigationItem(BasketTab)
+//                    }
+//                }
+//            )
+//        }
     }
 }
 

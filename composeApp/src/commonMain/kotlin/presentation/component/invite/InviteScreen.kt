@@ -90,7 +90,7 @@ import utils.stateRemember
 
 @OptIn(ExperimentalMaterial3Api::class, KoinExperimentalAPI::class)
 @Composable
-fun InviteInitBottomSheet(navigator: Navigator) {
+fun InviteInitBottomSheet(onClick: (() -> Unit)? = null) {
     val viewModel: InviteViewModel = koinViewModel()
     val isSheetOpen = rememberSaveable { mutableStateOf(false) }
     val isDialogOpen = rememberSaveable { mutableStateOf(false) }
@@ -118,7 +118,9 @@ fun InviteInitBottomSheet(navigator: Navigator) {
                         setStateBottomSheet(false, coroutineScope, isSheetOpen, sheetState)
                         //isSheetOpen.value = false
                     }
-                else ComposeShareInviteMiniBottomSheet(stateInvite.value!!)
+                else ComposeShareInviteMiniBottomSheet(stateInvite.value!!){
+                    onClick?.invoke()
+                }
         }
     }
     InviteInit(viewModel) {
