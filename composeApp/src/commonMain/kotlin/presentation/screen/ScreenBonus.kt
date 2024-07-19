@@ -9,6 +9,6 @@ import presentation.component.bonus.BonusInit
 class ScreenBonus : Screen {
     @Composable
     override fun Content() {
-        //BonusInit(LocalNavigator.currentOrThrow)
+        BonusInit()
     }
 }

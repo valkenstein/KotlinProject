@@ -50,7 +50,7 @@ fun RowScope.TabNavigationItem(tab: Tab) {
         .clickable(
             interactionSource = interactionSource,
             indication = rememberRipple(bounded = false, color = Color.Gray),
-            ) {
+        ) {
             tabNavigator.current = tab
         }) {
         Image(

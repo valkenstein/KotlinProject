@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -106,19 +107,23 @@ fun RowScope.AddItem(
             indication = rememberRipple(bounded = false, color = Color.Gray),
         ) {
             if (!selected)
-            try {
-                val backStackEntry = navController.getBackStackEntry(screen.route)
-                navController.popBackStack(screen.route, false)
-
-            } catch (e: Exception) {
-                navController.navigate(screen.route) {
-                    popUpTo(screen.route?: "") {
-                        saveState = true
+                try {
+                    val route = screen.route
+                    val backStackEntry = navController.getBackStackEntry(route)
+                    val savedStateHandle = backStackEntry.savedStateHandle
+//                    navController.popBackStack(screen.route, false)
+                    navController.navigate(route) {
+                        popUpTo(route) { inclusive = true }
                     }
-                    launchSingleTop = true
-                    restoreState = true
+                } catch (e: Exception) {
+                    navController.navigate(screen.route) {
+                        popUpTo(screen.route ?: "") {
+                            saveState = true
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
                 }
-            }
 
 
             //tabNavigator.current = tab

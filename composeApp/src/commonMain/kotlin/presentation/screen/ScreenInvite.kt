@@ -9,6 +9,6 @@ import presentation.component.invite.InviteInitBottomSheet
 class ScreenInvite : Screen {
     @Composable
     override fun Content() {
-        //InviteInitBottomSheet(LocalNavigator.currentOrThrow)
+        InviteInitBottomSheet()
     }
 }
