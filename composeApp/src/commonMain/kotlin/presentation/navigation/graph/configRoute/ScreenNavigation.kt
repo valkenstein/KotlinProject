@@ -35,7 +35,7 @@
 //import com.mobiledevpro.di.rememberViewModel
 //import com.mobiledevpro.home.view.HomeScreen
 //import com.mobiledevpro.home.view.HomeViewModel
-//import presentation.component.graph.configRoute.navigateTo
+//import presentation.navigation.graph.configRoute.navigateTo
 //import com.mobiledevpro.navigation.graph.HomeNavGraph
 //import com.mobiledevpro.navigation.graph.OnBoardingNavGraph
 //import com.mobiledevpro.navigation.graph.PeopleNavGraph

@@ -1,11 +1,10 @@
-package presentation.component.graph2
+package presentation.navigation.graph2
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import presentation.component.Contact.initContact
 import presentation.component.bonus.BonusInit

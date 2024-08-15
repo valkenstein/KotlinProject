@@ -1,4 +1,4 @@
-//package presentation.component.graph
+//package presentation.navigation.graph
 //
 //import androidx.compose.runtime.Composable
 //import androidx.compose.ui.Modifier
@@ -7,7 +7,7 @@
 //import onBoardingFirstScreen
 //import onBoardingSecondScreen
 //import onBoardingThirdScreen
-//import presentation.component.graph.configRoute.Screen
+//import presentation.navigation.graph.configRoute.Screen
 //
 //@Composable
 //fun OnBoardingNavGraph(

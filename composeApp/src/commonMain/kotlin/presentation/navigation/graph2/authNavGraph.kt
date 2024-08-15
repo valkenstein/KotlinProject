@@ -1,4 +1,4 @@
-package presentation.component.graph2
+package presentation.navigation.graph2
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController

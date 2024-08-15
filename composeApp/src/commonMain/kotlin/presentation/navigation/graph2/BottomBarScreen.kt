@@ -1,4 +1,4 @@
-package presentation.component.graph2
+package presentation.navigation.graph2
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home

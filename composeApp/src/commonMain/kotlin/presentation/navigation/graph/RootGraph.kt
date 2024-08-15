@@ -1,4 +1,4 @@
-//package presentation.component.graph
+//package presentation.navigation.graph
 //
 //import androidx.compose.runtime.Composable
 //import androidx.compose.ui.Modifier
@@ -6,8 +6,8 @@
 //import androidx.navigation.compose.NavHost
 //import homeNavGraph
 //import onBoardingNavGraph
-//import presentation.component.graph.configRoute.Screen
-//import presentation.component.graph.configRoute.navigateTo
+//import presentation.navigation.graph.configRoute.Screen
+//import presentation.navigation.graph.configRoute.navigateTo
 //import subscriptionScreen
 //
 //@Composable

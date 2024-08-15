@@ -1,4 +1,4 @@
-package presentation.component.graph2.screen
+package presentation.navigation.graph2.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -25,12 +25,11 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import presentation.component.graph2.BottomBarScreen
-import presentation.component.graph2.HomeNavGraph
+import presentation.navigation.graph2.BottomBarScreen
+import presentation.navigation.graph2.HomeNavGraph
 import ui.BaseRed
 
 @Composable

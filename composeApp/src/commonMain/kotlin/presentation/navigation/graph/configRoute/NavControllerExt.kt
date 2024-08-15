@@ -1,5 +1,5 @@
 //
-//package presentation.component.graph.configRoute
+//package presentation.navigation.graph.configRoute
 //
 //import androidx.navigation.NavController
 //import androidx.navigation.NavGraph.Companion.findStartDestination

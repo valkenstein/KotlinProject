@@ -1,10 +1,10 @@
-package presentation.component.graph2
+package presentation.navigation.graph2
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import presentation.component.graph2.screen.HomeScreen
+import presentation.navigation.graph2.screen.HomeScreen
 
 @Composable
 fun RootNavigationGraph(navController: NavHostController) {

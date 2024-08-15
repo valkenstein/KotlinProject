@@ -1,4 +1,4 @@
-//package presentation.component.graph.configRoute
+//package presentation.navigation.graph.configRoute
 ///*
 // * Copyright 2022 | Dmitri Chernysh | https://mobile-dev.pro
 // *
