@@ -35,6 +35,7 @@ data class NavigationDom(
 data class MapKey(
     val key: String = "",
     val value: String = "все",
+    val img: String = "",
 )
 
 data class InviteCellDom(

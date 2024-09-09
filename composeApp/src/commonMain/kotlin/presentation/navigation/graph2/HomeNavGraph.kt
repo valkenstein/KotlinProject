@@ -9,6 +9,8 @@ import androidx.navigation.navigation
 import presentation.component.Contact.initContact
 import presentation.component.bonus.BonusInit
 import presentation.component.invite.InviteInitBottomSheet
+import presentation.component.level_info.LazyLevel
+import presentation.component.level_info.LazyLevelInfo
 
 @Composable
 fun HomeNavGraph(navController: NavHostController ) {
@@ -26,7 +28,8 @@ fun HomeNavGraph(navController: NavHostController ) {
             BonusInit()
         }
         composable(route = BottomBarScreen.Settings.route) {
-            initContact()
+            //initContact()
+            LazyLevel()
         }
         detailsNavGraph(navController = navController)
     }

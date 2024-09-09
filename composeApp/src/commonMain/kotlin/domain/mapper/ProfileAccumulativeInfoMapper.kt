@@ -1,8 +1,10 @@
 package domain.mapper
 
 import domain.mapper.base.ResultMapper
+import domain.model.AccumulativeDom
 import domain.model.BonusAccountItemDom
 import domain.model.BonusOperationsDom
+import network.data.AccumulativeResponse
 import network.data.BonusInfoResponse
 import network.data.BonusOperationsResponse
 import network.data.OperationsResponse
@@ -32,5 +34,15 @@ class ProfileAccumulativeInfoMapper constructor(
             bonus = ("${it.value}"),
             type = if (it.typeValue == "plus") "+" else "–"
         )
+    }
+    fun listAccumulativeMap(listAccumulative: List<AccumulativeResponse>?): List<AccumulativeDom> {
+        return listAccumulative?.map {
+            AccumulativeDom(
+                id = it.id ?: "",
+                title = it.title ?: "",
+                sumFrom = it.sumFrom ?: "",
+                image = it.image ?: "",
+            )
+        } ?: emptyList()
     }
 }

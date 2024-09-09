@@ -252,6 +252,7 @@ fun InviteList(
         val scrollState = rememberLazyListState()
         val i = scrollState.isScrolledToTheEnd()
         val composition by rememberLottieComposition(LottieCompositionSpec.JsonString(loading))
+        val showText2 = viewModel.currentState.selectedFilter.value.uppercase()
 
         ToolbarBase(
             Modifier.padding(horizontal = 0.dp),
@@ -315,9 +316,21 @@ fun InviteList(
                     DropdownExample(
                         modifier = Modifier.align(Alignment.TopEnd),
                         inviteData.currentStateInvite.filter,
-                        viewModel.currentState.selectedFilter
-                    ) {
-                        viewModel.selectSort(it)
+                        showText2,
+                        change = {
+                            viewModel.selectSort(it)
+                        }
+                    ) { expanded ->
+                        Text(
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 12.sp,
+                            letterSpacing = 0.06.em,
+                            text = showText2,
+                            modifier = Modifier
+                                .wrapContentWidth()
+                                .clickable {
+                                    expanded.value = true
+                                })
                     }
                 }
             }
