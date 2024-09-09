@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -7,8 +8,11 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.serialization)
-    id("com.google.devtools.ksp") version "2.0.0-1.0.22"
+    alias(libs.plugins.kspCompose)
+   // id("com.google.devtools.ksp") version "2.0.20-Beta1-1.0.22"
     id("de.jensklingenberg.ktorfit") version "2.0.0"
+     alias(libs.plugins.room)
+
     //id("dev.icerock.mobile.multiplatform-resources")
 }
 
@@ -44,6 +48,9 @@ kotlin {
 //    }
 
     sourceSets {
+        val commonMain by getting {
+            resources.srcDir("src/commonMain/resources")
+        }
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -57,6 +64,12 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
 
+            //room
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
+            // coil
+            implementation("com.github.skydoves:landscapist-coil3:2.3.6")
+            //implementation(libs.coil)
             //mvvm
             implementation(libs.mvvm.core)
             implementation(libs.mvvm.compose)
@@ -132,18 +145,21 @@ android {
     }
     dependencies {
         debugImplementation(compose.uiTooling)
+        implementation(libs.room.runtime.android)
     }
 }
-//multiplatformResources {
-//    resourcesPackage.set("org.example.project") // required
-//    resourcesClassName.set("SharedRes") // optional, default MR
-//    resourcesVisibility.set(MRVisibility.Internal) // optional, default Public
-//    iosBaseLocalizationRegion.set("en") // optional, default "en"
-//    iosMinimalDeploymentTarget.set("11.0") // optional, default "9.0"
-//}
-dependencies {
-    implementation(libs.androidx.ui.android)
-    implementation(libs.androidx.ui.tooling.preview.android)
-    implementation(libs.androidx.ui.tooling.preview.desktop)
+room {
+    schemaDirectory("$projectDir/schemas")
 }
+
+dependencies {
+    add("kspCommonMainMetadata", libs.room.compiler)
+}
+//
+//tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
+//    if (name != "kspCommonMainKotlinMetadata" ) {
+//        dependsOn("kspCommonMainKotlinMetadata")
+//    }
+//}
+
 

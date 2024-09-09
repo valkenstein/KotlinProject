@@ -26,17 +26,25 @@ ktor = "2.3.6"
 ktor-ext = "2.1.0"
 ktorfit = "2.0.0"
 koin = "3.5.6"
-ksp = "2.0.0-1.0.21"
+#ksp = "2.0.0-1.0.22"
+ksp = "2.0.20-Beta1-1.0.22"
 kotlinx-serialization = "1.6.0"
-uiAndroid = "1.6.8"
-uiToolingPreviewAndroid = "1.6.8"
-uiToolingPreviewDesktop = "1.6.8"
+uiAndroid = "1.7.0"
+coilComposeCore = "2.6.0"
+uiToolingPreviewAndroid = "1.7.0"
+uiToolingPreviewDesktop = "1.7.0"
 voyagerVersion = "1.1.0-beta02"
+room-version = "2.7.0-alpha07"
+sqlite-version = "2.5.0-SNAPSHOT"
+
+
+
 [libraries]
 compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
 koin-compose = {module="io.insert-koin:koin-compose", version.ref = "koinCompose"}
 koin-composeVM = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinMvvm" }
+
 
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
@@ -52,6 +60,11 @@ mvvm-compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "mvvmCo
 mvvm-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "mvvmCore" }
 mvvm-flow = { module = "dev.icerock.moko:mvvm-flow", version.ref = "mvvmCore" }
 mvvm-flow-compose = { module = "dev.icerock.moko:mvvm-flow-compose", version.ref = "mvvmCore" }
+
+coil = { module = "io.coil-kt.coil3:coil", version.ref = "coilComposeCore" }
+coil-compose-core = { module = "io.coil-kt.coil3:coil-compose-core", version.ref = "coilComposeCore" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilComposeCore" }
+coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref = "coilComposeCore" }
 
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization"}
@@ -73,6 +86,11 @@ voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.
 voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion" }
 voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room-version" }
+room-runtime-android = { module = "androidx.room:room-runtime-android", version.ref = "room-version" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room-version" }
+sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite-version" }
+
 
 [plugins]
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
@@ -83,3 +101,5 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+room = { id = "androidx.room", version.ref = "room-version" }
+kspCompose = { id = "com.google.devtools.ksp", version.ref = "ksp" }
