@@ -27,11 +27,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import domain.model.ContactDom
 import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 import presentation.ContactListEvent
 import presentation.ContactListState
 import presentation.mvvm.ContactListViewModel
 
 
+@OptIn(KoinExperimentalAPI::class)
 @Composable
 fun initContact(onClick: (() -> Unit)? = null) {
     val viewModel: ContactListViewModel = koinViewModel()

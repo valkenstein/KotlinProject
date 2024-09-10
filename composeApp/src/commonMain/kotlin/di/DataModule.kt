@@ -18,6 +18,9 @@ import domain.usecase.RestoreInviteCodeUseCase
 import network.api.IApiHomeService
 import network.api.IAuthorizationApiService
 import network.api.NetworkApi
+import network.api.createIApiHomeService
+import network.api.createIAuthorizationApiService
+import network.api.createNetworkApi
 import network.repository.ContentHomeRepository
 import network.repository.ProfileRepository
 import network.repository.Repository
@@ -28,10 +31,9 @@ import presentation.mvvm.InviteViewModel
 import presentation.mvvm.LevelInformationViewModel
 
 internal val apiModule = module {
-    factory { get<Ktorfit>().create<NetworkApi>() }
-    factory { get<Ktorfit>().create<IAuthorizationApiService>() }
-    factory { get<Ktorfit>().create<IApiHomeService>() }
-
+    factory { get<Ktorfit>().createNetworkApi() }
+    factory { get<Ktorfit>().createIApiHomeService()  }
+    factory { get<Ktorfit>().createIAuthorizationApiService()  }
 }
 
 internal val repositoryModule = module {
