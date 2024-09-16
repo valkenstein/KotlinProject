@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.kspCompose)
     alias(libs.plugins.ktorfit)
+    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -61,12 +62,13 @@ kotlin {
 
             //navigation compose
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.7.0-alpha07")
-            //voyager
-            // Navigator
+            //voyager Navigator
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.tab.navigator)
             implementation(libs.voyager.transitions)
-
+            //room
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
             //lottie
             implementation(libs.compottie)
             // coil
@@ -112,3 +114,7 @@ android {
         debugImplementation(compose.uiTooling)
     }
 }
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
