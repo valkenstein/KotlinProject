@@ -18,6 +18,7 @@ koinCore = "3.5.6"
 koinCompose = "1.1.5"
 koinMvvm = "1.2.0-Beta4"
 kotlin = "2.0.20"
+landscapistCoil3 = "2.3.6"
 mvvmCore = "0.16.1"
 composeNavigation = "2.8.0"
 navigationCompose = "2.7.0-alpha07"
@@ -36,7 +37,7 @@ coilComposeCore = "2.6.0"
 uiToolingPreviewAndroid = "1.7.0"
 uiToolingPreviewDesktop = "1.7.0"
 voyagerVersion = "1.1.0-beta02"
-room-version = "2.7.0-alpha08"
+room-version = "2.7.0-alpha09"
 sqlite-version = "2.5.0-SNAPSHOT"
 
 
@@ -59,6 +60,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+landscapist-coil3 = { module = "com.github.skydoves:landscapist-coil3", version.ref = "landscapistCoil3" }
 mvvm-compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "mvvmCore" }
 mvvm-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "mvvmCore" }
 mvvm-flow = { module = "dev.icerock.moko:mvvm-flow", version.ref = "mvvmCore" }
@@ -93,11 +95,11 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "room-vers
 room-runtime-android = { module = "androidx.room:room-runtime-android", version.ref = "room-version" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room-version" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite-version" }
+sqlite = { module = "androidx.sqlite:sqlite", version.ref = "sqlite-version" }
 
 
 [plugins]
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit-plugin" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }

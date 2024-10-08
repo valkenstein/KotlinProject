@@ -9,7 +9,9 @@ import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
+import dataBase.getPeopleDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -27,6 +29,9 @@ class MainActivity : ComponentActivity() {
 //        Log.e("bonusOperationUseCase11", bonusOperationUseCase.toString())
 //        println(bonusOperationUseCase)
        // getBonus()
+
+        //val dao = getPeopleDatabase(applicationContext).peopleDao()
+
         setContent {
             AppProject(false, false)
 

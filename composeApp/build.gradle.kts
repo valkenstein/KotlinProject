@@ -69,10 +69,11 @@ kotlin {
             //room
             implementation(libs.room.runtime)
             implementation(libs.sqlite.bundled)
+            implementation(libs.sqlite)
             //lottie
             implementation(libs.compottie)
             // coil
-            implementation("com.github.skydoves:landscapist-coil3:2.3.6")
+            implementation(libs.landscapist.coil3)
 
         }
         commonTest.dependencies {
@@ -112,9 +113,13 @@ android {
     }
     dependencies {
         debugImplementation(compose.uiTooling)
+
     }
 }
 room {
     schemaDirectory("$projectDir/schemas")
+}
+dependencies {
+    ksp(libs.room.compiler)
 }
 

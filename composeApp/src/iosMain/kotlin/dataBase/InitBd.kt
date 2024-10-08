@@ -1,13 +1,12 @@
 package dataBase
 
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
-import bd.bd.BdRoot
+import bd.BdRoot
+import bd.MyDatabase
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
-import platform.Foundation.NSHomeDirectory
 import platform.Foundation.NSUserDomainMask
 
 //fun getPeopleDatabase(): BdRoot {
@@ -16,9 +15,9 @@ import platform.Foundation.NSUserDomainMask
 //        factory = { BdRoot::class.instantiateImpl() }).setDriver(BundledSQLiteDriver()).build()
 //}
 
-fun getPeopleDatabase(): BdRoot {
+fun getPeopleDatabase(): MyDatabase {
     val dbFilePath = documentDirectory() + "/people.db"
-    return Room.databaseBuilder<BdRoot>(
+    return Room.databaseBuilder<MyDatabase>(
         name = dbFilePath,
     ).setDriver(BundledSQLiteDriver()).build()
 }
