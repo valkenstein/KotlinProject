@@ -1,5 +1,7 @@
 [versions]
-agp = "8.5.2"
+agp = "8.7.1"
+kotlin = "2.0.20"
+ksp_version = "2.0.20-1.0.25"
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
@@ -11,44 +13,48 @@ androidx-espresso-core = "3.5.1"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.1.5"
 compose-plugin = "1.6.10"
-
+kotlinx-dateTime = "0.6.1"
 compottie = "1.1.2"
 junit = "4.13.2"
-koinCore = "3.5.6"
-koinCompose = "1.1.5"
-koinMvvm = "1.2.0-Beta4"
-kotlin = "2.0.20"
+koinCore = "4.0.0"
+koinCompose = "4.0.0"
+koinMvvm = "4.0.0"
+
 landscapistCoil3 = "2.3.6"
 mvvmCore = "0.16.1"
-composeNavigation = "2.8.0"
+composeNavigation = "2.8.3"
 navigationCompose = "2.7.0-alpha07"
 resources = "0.24.1"
-serialization = "1.6.3"
+serialization = "1.7.3"
 ktorfit-plugin = "2.1.0"
 ktor = "2.3.12"
 ktor-ext = "2.1.0"
 ktorfit = "2.1.0"
 koin = "3.5.6"
 #ksp = "2.0.0-1.0.22"
-ksp = "2.0.20-1.0.25"
+
 kotlinx-serialization = "1.6.0"
-uiAndroid = "1.7.0"
+uiAndroid = "1.7.4"
 coilComposeCore = "2.6.0"
-uiToolingPreviewAndroid = "1.7.0"
+uiToolingPreviewAndroid = "1.7.4"
 uiToolingPreviewDesktop = "1.7.0"
 voyagerVersion = "1.1.0-beta02"
-room-version = "2.7.0-alpha09"
-sqlite-version = "2.5.0-SNAPSHOT"
 
-
+androidxRoom = "2.7.0-alpha09"
+sqlite = "2.5.0-alpha09"
+okalgo = "0.0.2"
+multikApi = "0.1.1"
+multikJvm = "0.1.1"
 
 [libraries]
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-dateTime" }
 compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
 jetbrains-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
 koin-compose = {module="io.insert-koin:koin-compose", version.ref = "koinCompose"}
 koin-composeVM = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinMvvm" }
 
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
@@ -91,12 +97,12 @@ voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.
 voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion" }
 voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 
-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room-version" }
-room-runtime-android = { module = "androidx.room:room-runtime-android", version.ref = "room-version" }
-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room-version" }
-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite-version" }
-sqlite = { module = "androidx.sqlite:sqlite", version.ref = "sqlite-version" }
-
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidxRoom" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidxRoom" }
+multik-api = { module = "org.jetbrains.kotlinx:multik-api", version.ref = "multikApi" }
+multik-jvm = { module = "org.jetbrains.kotlinx:multik-jvm", version.ref = "multikJvm" }
+okalgo = { module = "org.ojalgo:okalgo", version.ref = "okalgo" }
+sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 
 [plugins]
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
@@ -106,5 +112,5 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-room = { id = "androidx.room", version.ref = "room-version" }
-kspCompose = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp_version" }
+room = { id = "androidx.room", version.ref = "androidxRoom" }

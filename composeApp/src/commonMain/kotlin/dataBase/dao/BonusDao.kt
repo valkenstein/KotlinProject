@@ -1,11 +1,11 @@
-package bd.dao
+package dataBase.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Upsert
-import bd.model.Person
+import dataBase.model.Person
 import kotlinx.coroutines.flow.Flow
 
 @Dao

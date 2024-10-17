@@ -7,81 +7,10 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.kspCompose)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.ktorfit)
     alias(libs.plugins.room)
 }
-
-kotlin {
-    androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "ComposeApp"
-            isStatic = true
-        }
-    }
-
-    sourceSets {
-        commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            //put your multiplatform dependencies here
-
-            //ktorfit
-            implementation(libs.ktor.client.core)
-            implementation(libs.ktor.client.serialization)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.client.logging)
-            implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.jensklingenberg.ktorfit)
-            //
-            //mvvm
-            implementation(libs.mvvm.core)
-            implementation(libs.mvvm.compose)
-            implementation(libs.mvvm.flow)
-            implementation(libs.mvvm.flow.compose)
-
-            //koin
-            implementation(libs.koin.core)
-            implementation(libs.koin.compose)
-            implementation(libs.koin.composeVM)
-
-            //navigation compose
-            implementation(libs.jetbrains.navigation.compose)
-            //voyager Navigator
-            implementation(libs.voyager.navigator)
-            implementation(libs.voyager.tab.navigator)
-            implementation(libs.voyager.transitions)
-            //room
-            implementation(libs.room.runtime)
-            implementation(libs.sqlite.bundled)
-            implementation(libs.sqlite)
-            //lottie
-            implementation(libs.compottie)
-            // coil
-            implementation(libs.landscapist.coil3)
-
-        }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
-        }
-    }
-}
-
 android {
     namespace = "org.example.project"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -113,13 +42,86 @@ android {
     }
     dependencies {
         debugImplementation(compose.uiTooling)
-
     }
 }
+
+kotlin {
+    androidTarget {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+    }
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "ComposeApp"
+            isStatic = true
+        }
+    }
+
+    sourceSets {
+        commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
+            //put your multiplatform dependencies here
+            api(libs.kotlinx.datetime)
+            //ktorfit
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.serialization)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.jensklingenberg.ktorfit)
+            //
+            //mvvm
+            implementation(libs.mvvm.core)
+            implementation(libs.mvvm.compose)
+            implementation(libs.mvvm.flow)
+            implementation(libs.mvvm.flow.compose)
+
+            //koin
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.composeVM)
+
+            //navigation compose
+            implementation(libs.jetbrains.navigation.compose)
+            //voyager Navigator
+            implementation(libs.voyager.navigator)
+            implementation(libs.voyager.tab.navigator)
+            implementation(libs.voyager.transitions)
+            //room
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.sqlite.bundled)
+            //lottie
+            implementation(libs.compottie)
+            // coil
+            implementation(libs.landscapist.coil3)
+
+        }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
+        androidMain.dependencies {
+            implementation(libs.androidx.compose.ui.tooling)
+        }
+    }
+}
+
+dependencies {
+    ksp(libs.androidx.room.compiler)
+}
+
 room {
     schemaDirectory("$projectDir/schemas")
-}
-dependencies {
-    ksp(libs.room.compiler)
 }
 
