@@ -1,5 +1,6 @@
 package presentation.component.level_info
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -57,6 +58,7 @@ import presentation.component.invite.DropdownExample
 import presentation.mvvm.ContactListViewModel
 import presentation.mvvm.LevelInformationViewModel
 import ui.BaseBlack
+import ui.BaseRed
 import ui.bt_disable
 import utils.stateRemember
 
@@ -231,80 +233,99 @@ fun CategoryHeader(modifier: Modifier, title: String = "simple") {
     Spacer(modifier = Modifier.height(8.dp))
 }
 
-@Preview()
+@Preview( )
 @Composable
 fun InputText2(
     modifier: Modifier = Modifier,
+    text: String = "",
     hint: String = "Что добавить?",
     isSearch: Boolean = false,
-    onValueChange: (String) -> Unit = {}
+    onValidationChange: (String) -> String = { "" },
+    onValueChange: (String) -> Unit = { }
 ) {
-    var text by rememberSaveable { mutableStateOf("") }
+    var text by rememberSaveable { mutableStateOf(text) }
     val focusRequester by FocusRequester().stateRemember()
     var isFocused by false.stateRemember()
+    var messageError by "".stateRemember()
 
-    LaunchedEffect(Unit) {
-        //focusRequester.requestFocus()
-    }
+//    LaunchedEffect(Unit) {
+//        //focusRequester.requestFocus()
+//    }
+    Column {
+        BasicTextField(
+            value = text,
+            modifier = modifier
+                .padding(vertical = 12.dp)
+                .fillMaxWidth()
+                .background(color = Color.Transparent)
+                .focusModifier()
+                .focusRequester(focusRequester)
+                .onFocusChanged {
+                    isFocused = it.isFocused
+                },
+            onValueChange = {
+                text = it.capitalize()
+                onValueChange.invoke(it)
+                messageError = onValidationChange.invoke(it)
 
-    BasicTextField(
-        value = text,
-        modifier = modifier
-            .padding(vertical = 12.dp)
-            .fillMaxWidth()
-            .background(color = Color.Transparent)
-            .focusModifier()
-            .focusRequester(focusRequester)
-            .onFocusChanged {
-                isFocused = it.isFocused
             },
-        onValueChange = {
-            text = it.capitalize()
-            onValueChange.invoke(it)
-        },
-        keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = KeyboardType.Text
-        ),
-        singleLine = true,
-        decorationBox = { innertTextField ->
-            Box(
-                modifier = Modifier
-                    .height(32.dp)
-                    .padding(end = 25.dp)
-            ) {
-                innertTextField()
-            }
-            Box(modifier = Modifier.height(32.dp)) {
+            keyboardOptions = KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Text
+            ),
+            singleLine = true,
+            decorationBox = { innertTextField ->
                 Box(
                     modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .fillMaxWidth()
-                        .height(1.dp)
-                        .background(if (isFocused) BaseBlack else bt_disable)
-                )
-                if (text.isEmpty())
-                    Text(
-                        text = hint,
-                        color = Color.Gray,
-                        fontSize = 20.sp,
-                        //  modifier = Modifier.align(Alignment.CenterStart)
-                    )
-
-                if (text.isNotEmpty() || isSearch)
-                    Image(
+                        .height(32.dp)
+                        .padding(end = 25.dp)
+                ) {
+                    innertTextField()
+                }
+                Box(modifier = Modifier.height(32.dp)) {
+                    Box(
                         modifier = Modifier
-                            .height(15.dp)
-                            .width(15.dp)
-                            .align(Alignment.CenterEnd)
-                            .clickable {
-                                text = ""
-                                onValueChange.invoke("")
-                            },
-                        painter = painterResource(if (isSearch && text.isEmpty()) Res.drawable.ic_search else Res.drawable.ic_cross),
-                        contentDescription = "",
-                        contentScale = ContentScale.Fit,
+                            .align(Alignment.BottomCenter)
+                            .fillMaxWidth()
+                            .height(1.dp)
+                            .background(color =  if (isFocused) BaseBlack else bt_disable)
                     )
+                    if (text.isEmpty())
+                        Text(
+                            text = hint,
+                            color = Color.Gray,
+                            fontSize = 20.sp,
+                            //  modifier = Modifier.align(Alignment.CenterStart)
+                        )
+
+                    if (text.isNotEmpty() || isSearch)
+                        Image(
+                            modifier = Modifier
+                                .height(15.dp)
+                                .width(15.dp)
+                                .align(Alignment.CenterEnd)
+                                .clickable {
+                                    text = ""
+                                    onValueChange.invoke("")
+                                    messageError = onValidationChange.invoke("")
+                                },
+                            painter = painterResource( if (isSearch && text.isEmpty()) Res.drawable.ic_search else Res.drawable.ic_cross),
+                            contentDescription = "",
+                            contentScale = ContentScale.Fit,
+                        )
+                }
+
             }
+        )
+        AnimatedVisibility(
+            modifier = Modifier ,
+            visible = messageError.isNotEmpty(),
+        ) {
+            Text(
+                text = messageError,
+                color = BaseRed,
+                letterSpacing = 0.02.em,
+                fontSize = 12.sp,
+            )
         }
-    )
+    }
 }
