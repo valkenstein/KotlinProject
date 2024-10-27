@@ -9,7 +9,7 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.ktorfit)
-    alias(libs.plugins.room)
+    //alias(libs.plugins.room)
 }
 android {
     namespace = "org.example.project"
@@ -121,7 +121,7 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 }
 
-room {
-    schemaDirectory("$projectDir/schemas")
-}
+//room {
+//    schemaDirectory("$projectDir/schemas")
+//}
 
