@@ -11,6 +11,7 @@ import presentation.component.bonus.BonusInit
 import presentation.component.invite.InviteInitBottomSheet
 import presentation.component.level_info.LazyLevel
 import presentation.component.level_info.LazyLevelInfo
+import presentation.component.vitrina_input.InitViewVitrinaInput
 
 @Composable
 fun HomeNavGraph(navController: NavHostController ) {
@@ -31,6 +32,11 @@ fun HomeNavGraph(navController: NavHostController ) {
             //initContact()
             LazyLevel()
         }
+        composable(route = BottomBarScreen.VitrinaInput.route) {
+            InitViewVitrinaInput()
+        }
+
+
         detailsNavGraph(navController = navController)
     }
 }

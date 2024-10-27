@@ -54,13 +54,7 @@ fun ToolbarBase(
         title = {
             ToolbarCustom(Modifier.offset(y = animatedValue.value.dp), title, isHide, onClick)
         }
-//        elevation = 0.dp,
-//        contentPadding = WindowInsets.systemBars
-//            .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
-//            .asPaddingValues(),
-//        backgroundColor = colorResource(id = R.color.white)
     )
-
 }
 
 @Composable

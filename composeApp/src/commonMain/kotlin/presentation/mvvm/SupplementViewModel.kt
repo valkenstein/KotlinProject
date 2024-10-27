@@ -1,5 +1,6 @@
 package presentation.mvvm
 
+import domain.model.UserOrderDom
 import domain.usecase.UpdateUserProfileUseCase
 
 class SupplementViewModel  constructor(
@@ -10,7 +11,7 @@ class SupplementViewModel  constructor(
     fun safe() {
         launchInVMScope {
             showLoading()
-            UpdateUserUseCase(currentUser).collectSuccess {
+            UpdateUserUseCase(UserOrderDom()).collectSuccess {
                 //SupplementUserFragmentDirections.actionSupplementUserFragmentToHomeFragment().emit()
                 //popBackStack()
             }

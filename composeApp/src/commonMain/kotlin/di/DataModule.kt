@@ -5,6 +5,7 @@ import domain.mapper.Empty2Mapper
 import domain.mapper.HomeMapper
 import domain.mapper.InviteGenerationMapper
 import domain.mapper.InviteListMapper
+import domain.mapper.PhoneModelMapper
 import domain.usecase.BonusOperationUseCase
 import domain.mapper.ProfileAccumulativeInfoMapper
 import domain.mapper.StatusAccumulativeMapper
@@ -15,6 +16,7 @@ import domain.usecase.GetInviteListUseCase
 import domain.usecase.InformationInviteUseCase
 import domain.usecase.RemoveInviteUseCase
 import domain.usecase.RestoreInviteCodeUseCase
+import domain.usecase.UpdateUserProfileUseCase
 import network.api.IApiHomeService
 import network.api.IAuthorizationApiService
 import network.api.NetworkApi
@@ -25,10 +27,12 @@ import network.repository.ContentHomeRepository
 import network.repository.ProfileRepository
 import network.repository.Repository
 import org.koin.compose.viewmodel.dsl.viewModel
+import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 import presentation.mvvm.ContactListViewModel
 import presentation.mvvm.InviteViewModel
 import presentation.mvvm.LevelInformationViewModel
+import presentation.mvvm.SupplementViewModel
 
 internal val apiModule = module {
     factory { get<Ktorfit>().createNetworkApi() }
@@ -51,6 +55,7 @@ internal val useCaseModule = module {
     factory { RestoreInviteCodeUseCase(get(), get()) }
     factory { AccumulativeBrandsUseCase(get(), get()) }
     factory { AccumulativeStatusUseCase(get(), get()) }
+    factory { UpdateUserProfileUseCase(get(), get()) }
 }
 internal val mapperModule = module {
     factory { Empty2Mapper() }
@@ -59,12 +64,14 @@ internal val mapperModule = module {
     factory { ProfileAccumulativeInfoMapper() }
     factory { HomeMapper() }
     factory { StatusAccumulativeMapper(get()) }
+    factory { PhoneModelMapper() }
 }
 
 internal val mvvmModule = module {
-    viewModel { ContactListViewModel(get()) }
-    viewModel { InviteViewModel(get(), get(), get(), get(), get()) }
-    viewModel { LevelInformationViewModel(get(), get()) }
+    viewModelOf (::ContactListViewModel )
+    viewModelOf (::InviteViewModel)
+    viewModelOf (::LevelInformationViewModel)
+    viewModelOf (::SupplementViewModel)
 }
 
 

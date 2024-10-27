@@ -10,10 +10,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-open class BaseViewModel : androidx.lifecycle.ViewModel() {
+open class BaseViewModel : ViewModel() {
+    private val loadingMutableFlow =
+        MutableStateFlow<domain.model.ViewEvent.Loading>(domain.model.ViewEvent.Loading.InitialEvent)
+    val loadingFlow: Flow<domain.model.ViewEvent.Loading> get() = loadingMutableFlow
+
     protected fun launchInVMScope(
         context: CoroutineContext = Dispatchers.IO,
         block: suspend CoroutineScope.() -> Unit

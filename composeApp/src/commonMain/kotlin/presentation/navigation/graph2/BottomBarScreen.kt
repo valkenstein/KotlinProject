@@ -1,6 +1,7 @@
 package presentation.navigation.graph2
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
@@ -27,5 +28,11 @@ sealed class BottomBarScreen(
         route = "SETTINGS",
         title = "SETTINGS",
         icon = Icons.Default.Settings
+    )
+
+    object VitrinaInput : BottomBarScreen(
+        route = "VitrinaInput",
+        title = "VitrinaInput",
+        icon = Icons.Default.Call
     )
 }

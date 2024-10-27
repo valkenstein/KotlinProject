@@ -28,7 +28,9 @@ import ui.BaseRed
 import ui.bt_disable
 import utils.stateRemember
 
-interface SwitchComponent@Preview
+interface SwitchComponent
+
+@Preview
 @Composable
 fun SwitchCustom(
     modifier: Modifier = Modifier,
@@ -44,7 +46,10 @@ fun SwitchCustom(
         ) {
             Switch(
                 modifier = Modifier
-                    .background( color = if (checked) BaseRed else bt_disable, shape = RoundedCornerShape(50))
+                    .background(
+                        color = if (checked) BaseRed else bt_disable,
+                        shape = RoundedCornerShape(50)
+                    )
                     // .align(Alignment.TopEnd)
                     .width(45.dp)
                     .height(26.dp),
@@ -55,13 +60,13 @@ fun SwitchCustom(
                 },
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = Color.White,
+                    checkedTrackColor = BaseRed.copy(alpha = 1f),
                     disabledCheckedThumbColor = Color.White,
                     uncheckedThumbColor = Color.White,
-                    checkedTrackColor = BaseRed,
                     disabledUncheckedThumbColor = Color.White,
-                    uncheckedTrackColor = bt_disable,
-                    checkedTrackAlpha = 1f,
-                    uncheckedTrackAlpha = 1f,
+                    uncheckedTrackColor = bt_disable.copy(alpha = 0.5f),
+//                    checkedTrackAlpha = 1f,
+//                    uncheckedTrackAlpha = 1f,
                 )
             )
         }

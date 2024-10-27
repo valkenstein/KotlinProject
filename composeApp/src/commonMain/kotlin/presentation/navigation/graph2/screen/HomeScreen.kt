@@ -52,6 +52,7 @@ fun BottomBar(navController: NavHostController) {
         BottomBarScreen.Home,
         BottomBarScreen.Profile,
         BottomBarScreen.Settings,
+        BottomBarScreen.VitrinaInput,
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
