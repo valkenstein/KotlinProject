@@ -11,6 +11,12 @@ struct ComposeView: UIViewControllerRepresentable {
 }
 
 struct ContentView: View {
+//    var body: some View {
+//        VStack {
+//            Text("Hello, world!")
+//        }
+//        .padding()
+//    }
     var body: some View {
         ComposeView()
                 .ignoresSafeArea(.keyboard) // Compose has own keyboard handler

@@ -51,20 +51,35 @@ fun SwitchCustom(
                         shape = RoundedCornerShape(50)
                     )
                     // .align(Alignment.TopEnd)
-                    .width(45.dp)
-                    .height(26.dp),
+                    .size(45.dp, 16.dp),
                 checked = checked,
                 onCheckedChange = {
                     checked = it
                     onValueChange.invoke(it)
                 },
+
+                thumbContent = {
+                    // Фиксируем размер thumb
+                    androidx.compose.foundation.layout.Box(
+                        Modifier.size(0.dp) // Устанавливаем постоянный размер для thumb
+                    )
+                },
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = Color.White,
                     checkedTrackColor = BaseRed.copy(alpha = 1f),
+                    checkedBorderColor = BaseRed.copy(alpha = 1f),
                     disabledCheckedThumbColor = Color.White,
+                    disabledCheckedTrackColor = Color.White,
+                    disabledCheckedBorderColor = bt_disable,
+
                     uncheckedThumbColor = Color.White,
                     disabledUncheckedThumbColor = Color.White,
-                    uncheckedTrackColor = bt_disable.copy(alpha = 0.5f),
+                    disabledUncheckedTrackColor = Color.White,
+                    disabledUncheckedBorderColor = bt_disable,
+                    uncheckedBorderColor = bt_disable.copy(alpha = 1f),
+                    disabledUncheckedIconColor = bt_disable.copy(alpha = 1f),
+                    uncheckedTrackColor = bt_disable.copy(alpha = 1f),
+
 //                    checkedTrackAlpha = 1f,
 //                    uncheckedTrackAlpha = 1f,
                 )

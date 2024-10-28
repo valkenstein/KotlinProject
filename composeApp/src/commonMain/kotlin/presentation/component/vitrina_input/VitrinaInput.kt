@@ -75,10 +75,10 @@ fun Content(user: UserOrderDom) {
             }
             Column(
                 Modifier
+                    .padding(start =16.dp, top = 16.dp, end = 16.dp, bottom = 16.dp)
                     .fillMaxSize()
                     .imePadding()
                     .verticalScroll(scrollState)
-                    .padding(16.dp)
             ) {
 
                 //region Description
@@ -161,7 +161,7 @@ fun Content(user: UserOrderDom) {
                     letterSpacing = 0.02.em,
                     lineHeight = 19.sp,
                 )
-
+                Spacer(modifier = Modifier.size(140.dp))
             }
         }
         ButtonOk(
