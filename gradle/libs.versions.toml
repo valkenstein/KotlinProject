@@ -1,14 +1,15 @@
 [versions]
-agp = "8.7.1"
-kotlin = "2.0.21"
-ksp_version = "2.0.21-1.0.25"
+agp = "8.7.3"
+kotlin = "2.1.0"
+ksp_version = "2.1.0-1.0.29"
+ksp_ktor = "2.2.0-1.0.29"
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
 androidx-activityCompose = "1.9.3"
 androidx-appcompat = "1.7.0"
-androidx-constraintlayout = "2.1.4"
-androidx-core-ktx = "1.13.1"
+androidx-constraintlayout = "2.2.0"
+androidx-core-ktx = "1.15.0"
 androidx-espresso-core = "3.6.1"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
@@ -16,32 +17,35 @@ compose-plugin = "1.6.10"
 kotlinx-dateTime = "0.6.1"
 compottie = "1.1.2"
 junit = "4.13.2"
-koinCore = "4.0.0"
-koinCompose = "4.0.0"
-koinMvvm = "4.0.0"
+koinCore = "4.0.1"
+koinCompose = "4.0.1"
+koinMvvm = "4.0.1"
 
+
+ktorfitKsp = "2.2.0-1.0.29"
 landscapistCoil3 = "2.3.6"
 mvvmCore = "0.16.1"
-composeNavigation = "2.8.3"
-navigationCompose = "2.7.0-alpha07"
+composeNavigation = "2.8.5"
+navigationCompose = "2.8.0-alpha10"
 resources = "0.24.1"
 serialization = "1.7.3"
-ktorfit-plugin = "2.1.0"
-ktor = "2.3.12"
-ktor-ext = "2.1.0"
-ktorfit = "2.1.0"
+
+ktorfit-plugin = "2.2.0"
+ktor = "3.0.1"
+ktor-ext = "2.2.0"
+ktorfit = "2.2.0"
 koin = "3.5.6"
 #ksp = "2.0.0-1.0.22"
 
 kotlinx-serialization = "1.6.0"
-uiAndroid = "1.7.4"
+uiAndroid = "1.7.6"
 coilComposeCore = "2.6.0"
-uiToolingPreviewAndroid = "1.7.4"
+uiToolingPreviewAndroid = "1.7.6"
 uiToolingPreviewDesktop = "1.7.0"
 voyagerVersion = "1.1.0-beta02"
 
-androidxRoom = "2.7.0-alpha10"
-sqlite = "2.5.0-alpha10"
+androidxRoom = "2.7.0-alpha12"
+sqlite = "2.5.0-alpha12"
 okalgo = "0.0.2"
 multikApi = "0.1.1"
 multikJvm = "0.1.1"
@@ -66,6 +70,8 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktorfit-ksp = { module = "de.jensklingenberg.ktorfit:ktorfit-ksp", version.ref = "ktorfitKsp" }
 landscapist-coil3 = { module = "com.github.skydoves:landscapist-coil3", version.ref = "landscapistCoil3" }
 mvvm-compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "mvvmCore" }
 mvvm-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "mvvmCore" }

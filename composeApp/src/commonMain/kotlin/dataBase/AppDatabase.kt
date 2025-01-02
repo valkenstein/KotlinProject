@@ -7,26 +7,31 @@ import dataBase.model.Player
 import dataBase.model.Team
 import kotlinx.datetime.LocalDateTime
 
-//internal expect object AppDatabaseCtor : RoomDatabaseConstructor<AppDatabase>
-
-//@Database(entities = [Team::class, Player::class, GameFixture::class], version = 1)
-//@ConstructedBy(AppDatabaseCtor::class)
-//@TypeConverters(LocalDateTimeConverter::class)
+//internal expect object AppDatabaseKtor : RoomDatabaseConstructor<AppDatabase>
+////
+////@Database(entities = [Team::class, Player::class, GameFixture::class], version = 1)
+////@ConstructedBy(AppDatabaseCtor::class)
+//////@TypeConverters(LocalDateTimeConverter::class)
+////abstract class AppDatabase : RoomDatabase() {
+////    //abstract fun fantasyPremierLeagueDao(): FantasyPremierLeagueDao
+////}
+//@ConstructedBy(AppDatabaseKtor::class)
+//@Database(entities = [Player::class], version = 1)
 //abstract class AppDatabase : RoomDatabase() {
-//    abstract fun fantasyPremierLeagueDao(): FantasyPremierLeagueDao
+//   // abstract fun yourDao(): YourDao
 //}
-//
-//internal const val dbFileName = "fantasypremierleague.db"
-//
-//
-//class LocalDateTimeConverter {
-//    @TypeConverter
-//    fun fromTimestamp(value: String?): LocalDateTime? {
-//        return value?.let { LocalDateTime.parse(it) }
-//    }
-//
-//    @TypeConverter
-//    fun dateToTimestamp(date: LocalDateTime?): String? {
-//        return date?.toString()
-//    }
-//}
+
+internal const val dbFileName = "fantasypremierleague.db"
+
+
+class LocalDateTimeConverter {
+    @TypeConverter
+    fun fromTimestamp(value: String?): LocalDateTime? {
+        return value?.let { LocalDateTime.parse(it) }
+    }
+
+    @TypeConverter
+    fun dateToTimestamp(date: LocalDateTime?): String? {
+        return date?.toString()
+    }
+}

@@ -7,9 +7,9 @@ import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
-import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logger
-import io.ktor.client.plugins.logging.Logging
+//import io.ktor.client.plugins.logging.LogLevel
+//import io.ktor.client.plugins.logging.Logger
+//import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.header
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -70,14 +70,14 @@ private fun provideHttpClient(json: Json) = HttpClient {
         connectTimeoutMillis = TIME_OUT
         requestTimeoutMillis = TIME_OUT
     }
-    install(Logging) {
-        logger = object : Logger {
-            override fun log(message: String) {
-                println("json: \n $message")
-            }
-        }
-        level = LogLevel.ALL
-    }
+//    install(Logging) {
+//        logger = object : Logger {
+//            override fun log(message: String) {
+//                println("json: \n $message")
+//            }
+//        }
+//        level = LogLevel.ALL
+//    }
 }
 
 private fun provideKtorHttpClient(httpClient: HttpClient, baseUrl: String): Ktorfit {

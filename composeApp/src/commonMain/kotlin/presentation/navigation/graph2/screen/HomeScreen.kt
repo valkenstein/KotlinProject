@@ -106,21 +106,18 @@ fun RowScope.AddItem(
             indication = rememberRipple(bounded = false, color = Color.Gray),
         ) {
             if (!selected)
-            try {
-                val backStackEntry = navController.getBackStackEntry(screen.route)
-                navController.popBackStack(screen.route, false)
-
-            } catch (e: Exception) {
-                navController.navigate(screen.route) {
-                    popUpTo(screen.route?: "") {
-                        saveState = true
+                try {
+                    val backStackEntry = navController.getBackStackEntry(screen.route)
+                    navController.popBackStack(screen.route, false)
+                } catch (e: Exception) {
+                    navController.navigate(screen.route) {
+                        popUpTo(screen.route ?: "") {
+                            saveState = true
+                        }
+                        launchSingleTop = true
+                        restoreState = true
                     }
-                    launchSingleTop = true
-                    restoreState = true
                 }
-            }
-
-
             //tabNavigator.current = tab
         }) {
 

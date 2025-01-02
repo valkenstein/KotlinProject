@@ -8,8 +8,10 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.ksp)
+   // alias(libs.plugins.kspktorfit)
+
+    alias(libs.plugins.room)
     alias(libs.plugins.ktorfit)
-    //alias(libs.plugins.room)
 }
 android {
     namespace = "org.example.project"
@@ -78,7 +80,8 @@ kotlin {
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.serialization)
             implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.client.logging)
+            //implementation(libs.ktor.client.cio)
+            //implementation(libs.ktor.client.logging)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.jensklingenberg.ktorfit)
             //
@@ -118,10 +121,11 @@ kotlin {
 }
 
 dependencies {
+    //ksp(libs.ktorfit.ksp)
     ksp(libs.androidx.room.compiler)
 }
 
-//room {
-//    schemaDirectory("$projectDir/schemas")
-//}
+room {
+    schemaDirectory("$projectDir/schemas")
+}
 

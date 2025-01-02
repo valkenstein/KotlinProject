@@ -91,7 +91,7 @@ class LevelInformationViewModel constructor(
                     ""
                 } else {
                     val firstLetter =
-                        name.first().toString().toUpperCase()
+                        name.first().toString().uppercase()
                     if (firstLetter.matches(digitsRegex)) {
                         "0-9"
                     } else {
